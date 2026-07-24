@@ -11,12 +11,14 @@ export function DataTableHeader<TData, TValue>() {
       {table.getHeaderGroups().map((headerGroup) => (
         <TableRow key={headerGroup.id}>
           {headerGroup.headers.map((header) => (
-            <TableHead
-              key={header.id}
-              style={{
-                width: header.getSize(),
-              }}
-            >
+              <TableHead
+                key={header.id}
+                style={{
+                  width: header.column.getSize(),
+                  minWidth: header.column.columnDef.minSize,
+                  maxWidth: header.column.columnDef.maxSize,
+                }}
+              >
               {header.isPlaceholder
                 ? null
                 : flexRender(header.column.columnDef.header, header.getContext())}

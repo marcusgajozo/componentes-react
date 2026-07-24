@@ -29,6 +29,8 @@ export function DataTableBody<TData, TValue>() {
                   title={title}
                   style={{
                     width: cell.column.getSize(),
+                    minWidth: cell.column.columnDef.minSize,
+                    maxWidth: cell.column.columnDef.maxSize,
                   }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

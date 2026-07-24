@@ -6,18 +6,11 @@
 
 .table {
   width: 100%;
+  table-layout: fixed;
   caption-side: bottom;
   font-size: 14px;
   border-collapse: collapse;
   text-align: left;
-}
-
-.tableHeader {
-  /* Estilos adicionais de thead, se necessários */
-}
-
-.tableBody {
-  /* Estilos adicionais de tbody, se necessários */
 }
 
 .tableBody .tableRow:last-child .tableCell {
@@ -46,6 +39,8 @@
   font-weight: 600;
   vertical-align: middle;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tableHead:first-child {
@@ -60,6 +55,8 @@
   color: var(--dt-text-color);
   vertical-align: middle;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tableCell:first-child {
