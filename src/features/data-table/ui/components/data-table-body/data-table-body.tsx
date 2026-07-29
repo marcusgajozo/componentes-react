@@ -23,14 +23,26 @@ export function DataTableBody<TData, TValue>() {
                   ? String(cellValue)
                   : undefined;
 
+              const isCustomSize = cell.column.columnDef.size !== 150;
+              const isCustomMinSize = cell.column.columnDef.minSize !== 20;
+              const isCustomMaxSize = cell.column.columnDef.maxSize !== Number.MAX_SAFE_INTEGER;
+
+              let minWidth: string | number = "max-content";
+              if (isCustomMinSize) {
+                minWidth = `max(max-content, ${cell.column.columnDef.minSize}px)`;
+              }
+              if (isCustomSize) {
+                minWidth = `max(max-content, ${cell.column.columnDef.size}px)`;
+              }
+
               return (
                 <TableCell
                   key={cell.id}
                   title={title}
                   style={{
-                    width: cell.column.getSize(),
-                    minWidth: cell.column.columnDef.minSize,
-                    maxWidth: cell.column.columnDef.maxSize,
+                    width: isCustomSize ? cell.column.getSize() : undefined,
+                    minWidth,
+                    maxWidth: isCustomMaxSize ? cell.column.columnDef.maxSize : undefined,
                   }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

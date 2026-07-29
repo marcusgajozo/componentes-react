@@ -73,7 +73,7 @@ export function DataTableContentTable<TData, TValue>({
 
   return (
     <DataTableContext.Provider value={contextValue}>
-      <Table style={{ minWidth: table.getTotalSize() }}>{children}</Table>
+      <Table>{children}</Table>
     </DataTableContext.Provider>
   );
 }

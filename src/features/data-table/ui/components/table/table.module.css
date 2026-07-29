@@ -6,7 +6,6 @@
 
 .table {
   width: 100%;
-  table-layout: fixed;
   caption-side: bottom;
   font-size: 14px;
   border-collapse: collapse;
@@ -39,8 +38,6 @@
   font-weight: 600;
   vertical-align: middle;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .tableHead:first-child {
