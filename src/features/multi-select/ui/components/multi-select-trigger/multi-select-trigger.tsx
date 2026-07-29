@@ -160,7 +160,7 @@ export function MultiSelectTrigger({
           onBlur={() => setIsFocused(false)}
           style={
             !isFocused && selectedObjs.length > 0
-              ? { width: 0, minWidth: 0, padding: 0, border: "none", opacity: 0 }
+              ? { width: 0, minWidth: 0, flex: "0 0 0px", padding: 0, border: "none", opacity: 0 }
               : undefined
           }
         />

@@ -24,7 +24,7 @@ export function MultiSelectDropdown({
 
   return (
     <Combobox.Portal>
-      <Combobox.Positioner sideOffset={4}>
+      <Combobox.Positioner sideOffset={4} className={styles.positioner}>
         <Combobox.Popup className={styles.dropdown}>
           <Combobox.List className={styles.listbox}>
             {options.length > 0 && (

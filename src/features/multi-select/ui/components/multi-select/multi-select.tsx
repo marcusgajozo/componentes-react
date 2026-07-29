@@ -80,11 +80,18 @@ export function MultiSelect({
     (vals: Option[]) => {
       if (vals.some((v) => v.value === "ALL_SELECT_TOGGLE")) {
         handleSelectAll();
+        setTimeout(() => {
+          setOpen(true);
+        }, 0);
         return;
       }
 
       commitValues(vals);
-      setInputValue("");
+
+      setTimeout(() => {
+        setInputValue("");
+        setOpen(true);
+      }, 0);
     },
     [commitValues, handleSelectAll]
   );
