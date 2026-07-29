@@ -1,11 +1,11 @@
-import "./theme.css";
+import "../../theme.css";
 
 import { Combobox } from "@base-ui/react/combobox";
 import * as React from "react";
 
+import { MultiSelectDropdown } from "../multi-select-dropdown";
+import { MultiSelectTrigger } from "../multi-select-trigger";
 import styles from "./multi-select.module.css";
-import { MultiSelectDropdown } from "./multi-select-dropdown";
-import { MultiSelectTrigger } from "./multi-select-trigger";
 
 export interface Option {
   value: string;

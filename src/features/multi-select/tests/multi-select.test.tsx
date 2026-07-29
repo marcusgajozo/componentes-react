@@ -5,7 +5,7 @@ afterEach(() => {
   cleanup();
 });
 
-import { MultiSelect } from "../ui/multi-select";
+import { MultiSelect } from "../ui/components/multi-select";
 
 const FRAMEWORKS = [
   { value: "react", label: "React" },

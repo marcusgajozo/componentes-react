@@ -1,7 +1,7 @@
 import { Combobox } from "@base-ui/react/combobox";
 import * as React from "react";
 
-import type { Option } from "./multi-select";
+import type { Option } from "../multi-select";
 import styles from "./multi-select-trigger.module.css";
 
 interface TriggerProps {

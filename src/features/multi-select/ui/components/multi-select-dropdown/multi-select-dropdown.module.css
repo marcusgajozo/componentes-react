@@ -32,14 +32,14 @@
   transition: background 0.1s ease;
 }
 
-.option[data-selected] {
-  background: var(--ms-option-selected-bg);
-  color: var(--ms-option-selected-color);
-}
-
 .option[data-highlighted] {
   background: var(--ms-option-hover-bg);
   outline: none;
+}
+
+.option[data-selected] {
+  background: var(--ms-option-selected-bg);
+  color: var(--ms-option-selected-color);
 }
 
 .option[data-disabled] {
