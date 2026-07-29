@@ -1,11 +1,11 @@
-import "./theme.css";
+import "../../theme.css";
 
 import { Combobox } from "@base-ui/react/combobox";
 import * as React from "react";
 
+import { SelectDropdown } from "../select-dropdown";
+import { SelectTrigger } from "../select-trigger";
 import styles from "./select.module.css";
-import { SelectDropdown } from "./select-dropdown";
-import { SelectTrigger } from "./select-trigger";
 
 export interface Option {
   value: string;

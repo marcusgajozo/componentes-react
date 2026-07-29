@@ -36,14 +36,14 @@
   transition: background 0.1s ease;
 }
 
-.option[data-selected] {
-  background: var(--sl-option-selected-bg);
-  color: var(--sl-option-selected-color);
-}
-
 .option[data-highlighted] {
   background: var(--sl-option-hover-bg);
   outline: none;
+}
+
+.option[data-selected] {
+  background: var(--sl-option-selected-bg);
+  color: var(--sl-option-selected-color);
 }
 
 .option[data-disabled] {

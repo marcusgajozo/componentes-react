@@ -1,6 +1,6 @@
 import { Combobox } from "@base-ui/react/combobox";
 
-import type { Option } from "./select";
+import type { Option } from "../select";
 import styles from "./select-dropdown.module.css";
 
 interface SelectDropdownProps {

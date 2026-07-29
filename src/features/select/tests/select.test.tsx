@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
-import { Select } from "../ui/select";
+import { Select } from "../ui/components/select";
 
 const COUNTRIES = [
   { value: "br", label: "Brasil" },
