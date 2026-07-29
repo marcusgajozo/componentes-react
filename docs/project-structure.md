@@ -19,15 +19,18 @@ Abaixo está um exemplo de como é a estrutura padrão de um diretório de funci
 ```text
 src/
 └── features/
-    └── [nome-da-funcionalidade]/   # Ex: modal, select, etc.
-        ├── ui/                     # Detalhes de implementação
-        │   ├── [componente].tsx    # Componentes React principais
-        │   ├── [componente].module.css # CSS Modules para estilização
-        │   ├── theme.css           # Variáveis globais/CSS para tematização do componente
-        │   ├── use-[hook].ts       # Hooks customizados internos ou exportados
-        │   ├── index.ts            # API Pública / Barrel file para a UI
-        │   └── README.md           # Documentação específica para esta funcionalidade
-        ├── tests/                  # Testes de unidade e integração
+    └── [nome-da-funcionalidade]/   # Ex: modal, select, data-table, etc.
+        ├── ui/                     # Detalhes de implementação e código fonte
+        │   ├── components/         # Pastas isoladas para cada subcomponente visual
+        │   │   └── [sub-componente]/
+        │   │       ├── [sub-componente].tsx
+        │   │       └── [sub-componente].module.css # Estilização local do componente
+        │   ├── hooks/              # (Opcional) Hooks customizados de lógica de UI
+        │   │   └── use-[hook].ts
+        │   ├── theme.css           # Variáveis globais/CSS para tematização base
+        │   ├── index.ts            # API Pública / Barrel file para exportar a UI
+        │   └── README.md           # Documentação específica (dependências, uso)
+        ├── tests/                  # Testes de unidade e integração (Vitest)
         │   └── [componente].test.tsx
         └── stories/                # Histórias do Storybook para documentação da UI
             └── [componente].stories.tsx
@@ -36,7 +39,10 @@ src/
 ### Responsabilidades das Pastas
 
 1. **`ui/`**:
-   Contém o código-fonte real da funcionalidade. Isso inclui componentes React, CSS Modules e quaisquer hooks customizados específicos para o comportamento da UI. Utilitários internos ou subcomponentes menores que não devem ser expostos globalmente também ficam aqui.
+   Contém o código-fonte principal da funcionalidade. Diferente de uma estrutura "plana", ele é subdividido em:
+   - **`components/`**: Cada parte visual (o "root", o "trigger", o "dropdown", etc.) ganha sua própria sub-pasta contendo o arquivo `.tsx` e seu respectivo `.module.css`.
+   - **`hooks/`**: Para custom hooks isolados que controlam comportamento (se a funcionalidade precisar, como um `useModal`).
+   - Os arquivos de base como o `theme.css` (para tokens CSS da feature inteira), o `index.ts` que decide o que será exportado, e um `README.md` explicando dependências.
 
 2. **`tests/`**:
    Contém todos os testes automatizados (`Vitest` / `Testing Library`) relacionados à funcionalidade. Manter os testes dentro da pasta da funcionalidade facilita encontrá-los e atualizá-los quando a UI mudar.
