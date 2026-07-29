@@ -42,6 +42,10 @@
   color: var(--ms-option-selected-color);
 }
 
+.option[data-selected][data-highlighted] {
+  background: color-mix(in srgb, var(--ms-option-selected-bg) 90%, black);
+}
+
 .option[data-disabled] {
   color: var(--ms-option-disabled-color);
   cursor: not-allowed;
@@ -76,7 +80,6 @@
 
 .selectAllOption {
   border-bottom: 1px solid var(--ms-border-color);
-  margin-bottom: 4px;
   font-weight: 500;
 }
 
