@@ -46,6 +46,10 @@
   color: var(--sl-option-selected-color);
 }
 
+.option[data-selected][data-highlighted] {
+  background: color-mix(in srgb, var(--sl-option-selected-bg) 90%, black);
+}
+
 .option[data-disabled] {
   color: var(--sl-option-disabled-color);
   cursor: not-allowed;
