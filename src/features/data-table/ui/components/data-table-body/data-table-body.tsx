@@ -27,7 +27,7 @@ export function DataTableBody<TData, TValue>() {
               const isCustomMinSize = cell.column.columnDef.minSize !== 20;
               const isCustomMaxSize = cell.column.columnDef.maxSize !== Number.MAX_SAFE_INTEGER;
 
-              let minWidth: string | number = "max-content";
+              let minWidth: string | number | undefined = undefined;
               if (isCustomMinSize) {
                 minWidth = cell.column.columnDef.minSize as number;
               } else if (isCustomSize) {
@@ -45,9 +45,9 @@ export function DataTableBody<TData, TValue>() {
                       ? cell.column.columnDef.maxSize
                       : isCustomSize
                         ? cell.column.getSize()
-                        : undefined,
-                    overflow: isCustomSize ? "hidden" : undefined,
-                    textOverflow: isCustomSize ? "ellipsis" : undefined,
+                        : 0,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
