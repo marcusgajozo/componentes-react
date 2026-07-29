@@ -130,6 +130,7 @@ export function MultiSelect({
           clearAll={clearAll}
           disabled={disabled}
           icon={icon}
+          isOpen={open}
         />
         {!disabled && (
           <MultiSelectDropdown

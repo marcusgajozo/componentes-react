@@ -11,6 +11,7 @@ interface TriggerProps {
   clearAll: (e: React.MouseEvent) => void;
   disabled?: boolean;
   icon?: React.ReactNode;
+  isOpen?: boolean;
 }
 
 export function MultiSelectTrigger({
@@ -20,6 +21,7 @@ export function MultiSelectTrigger({
   clearAll,
   disabled,
   icon,
+  isOpen,
 }: TriggerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const measureRef = React.useRef<HTMLDivElement>(null);
@@ -175,7 +177,11 @@ export function MultiSelectTrigger({
             <ClearIcon />
           </button>
         ) : (
-          <Combobox.Trigger className={styles.chevronButton} disabled={disabled} tabIndex={-1}>
+          <Combobox.Trigger
+            className={`${styles.chevronButton} ${isOpen ? styles.open : ""}`}
+            disabled={disabled}
+            tabIndex={-1}
+          >
             <ChevronIcon className={styles.chevron} />
           </Combobox.Trigger>
         )}
@@ -207,17 +213,17 @@ function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       aria-hidden="true"
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M2 4l4 4 4-4" />
+      <path d="M6 9l6 6 6-6" />
     </svg>
   );
 }
