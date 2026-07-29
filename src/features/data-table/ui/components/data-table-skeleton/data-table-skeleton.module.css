@@ -1,0 +1,30 @@
+.skeletonBlock {
+  background: var(--dt-row-hover);
+  border-radius: 4px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.paginationSkeleton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-top: 1px solid var(--dt-border);
+  background-color: var(--dt-bg);
+}
+
+.paginationGroup {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
