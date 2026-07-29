@@ -43,13 +43,18 @@ export function DataTablePaginationSelect({
         }
       }}
       inputValue={inputValue}
-      onInputValueChange={setInputValue}
+      onInputValueChange={(val) => {
+        if (/^\d*$/.test(val)) {
+          setInputValue(val);
+        }
+      }}
     >
       <Combobox.InputGroup className={styles.selectTriggerGroup}>
         <Combobox.Input
           className={styles.selectInput}
           aria-label={ariaLabel}
           data-testid={testId}
+          inputMode="numeric"
         />
         <Combobox.Trigger className={styles.selectIconTrigger} tabIndex={-1}>
           <div className={styles.selectIcon} />
