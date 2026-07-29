@@ -2,13 +2,23 @@
 
 Um componente customizado de seleção múltipla (MultiSelect) construído usando a primitiva Combobox do `@base-ui/react`. Ele suporta filtro de busca por padrão, acessibilidade total via teclado e utiliza CSS modules padrão para estilização.
 
-## Instalação
+## Dependências
 
-1. Certifique-se de que você tem o `@base-ui/react` instalado no seu projeto:
-   ```bash
-   pnpm add @base-ui/react
-   ```
-2. Copie a pasta inteira `multi-select` para o seu projeto (ex: `src/features/multi-select`).
+Para utilizar o componente `MultiSelect`, você precisa instalar a seguinte biblioteca no seu projeto:
+
+- `@base-ui/react`: Fornece componentes acessíveis não estilizados (utilizado o componente combobox).
+
+**Instalação:**
+
+```bash
+npm install @base-ui/react
+# ou
+yarn add @base-ui/react
+# ou
+pnpm add @base-ui/react
+```
+
+Após instalar a dependência, basta copiar a pasta `multi-select` para dentro de `src/features/` do seu projeto.
 
 ## Estrutura
 

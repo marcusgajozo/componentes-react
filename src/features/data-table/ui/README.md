@@ -4,8 +4,22 @@ O componente `DataTable` é uma tabela de dados flexível e reutilizável, basea
 
 ## Dependências
 
-- `@tanstack/react-table`
-- Vanilla CSS (`data-table.module.css`) para estilização
+Para utilizar o componente `DataTable`, você precisa instalar as seguintes bibliotecas no seu projeto:
+
+- `@tanstack/react-table`: Utilizada para a lógica e controle de estado da tabela.
+- `@base-ui/react`: Fornece componentes acessíveis não estilizados (utilizada para o dropdown de ações e select de paginação).
+
+**Instalação:**
+
+```bash
+npm install @tanstack/react-table @base-ui/react
+# ou
+yarn add @tanstack/react-table @base-ui/react
+# ou
+pnpm add @tanstack/react-table @base-ui/react
+```
+
+Além disso, o componente utiliza **Vanilla CSS Modules** (ex: `theme.css`, `data-table.module.css`) para a estilização, não exigindo dependências de estilo adicionais.
 
 ## Como Usar
 

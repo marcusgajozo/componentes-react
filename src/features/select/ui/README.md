@@ -2,13 +2,23 @@
 
 Um componente customizado de seleção (Select) construído usando a primitiva Combobox do `@base-ui/react`. Ele suporta filtro de busca por padrão, acessibilidade total via teclado e utiliza CSS modules padrão para estilização.
 
-## Instalação
+## Dependências
 
-1. Certifique-se de que você tem o `@base-ui/react` instalado no seu projeto:
-   ```bash
-   pnpm add @base-ui/react
-   ```
-2. Copie a pasta inteira `select` para o seu projeto (ex: `src/features/select`).
+Para utilizar o componente `Select`, você precisa instalar a seguinte biblioteca no seu projeto:
+
+- `@base-ui/react`: Fornece componentes acessíveis não estilizados (utilizado o componente combobox).
+
+**Instalação:**
+
+```bash
+npm install @base-ui/react
+# ou
+yarn add @base-ui/react
+# ou
+pnpm add @base-ui/react
+```
+
+Após instalar a dependência, basta copiar a pasta `select` para dentro de `src/features/` do seu projeto.
 
 ## Estrutura
 

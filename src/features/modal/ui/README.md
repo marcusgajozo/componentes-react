@@ -9,12 +9,21 @@ A funcionalidade `Modal` fornece uma janela de diálogo flexível, acessível e 
 - **Gerenciamento de Estado Global**: Inclui um hook customizado `useModal` integrado ao Zustand para gerenciar facilmente o estado de modais de forma global.
 - **CSS Modules**: Totalmente estilizado com CSS modules, oferecendo customização fácil de temas.
 
-## Instalação
+## Dependências
 
-Esta funcionalidade utiliza `@base-ui/react/dialog` para acessibilidade e `zustand` para estado. Certifique-se de ter instalado:
+Para utilizar o componente `Modal`, você precisa instalar as seguintes bibliotecas no seu projeto:
+
+- `@base-ui/react`: Fornece componentes acessíveis não estilizados (utilizado o componente dialog).
+- `zustand`: Utilizado para o gerenciamento de estado global dos modais.
+
+**Instalação:**
 
 ```bash
-pnpm install @base-ui/react zustand
+npm install @base-ui/react zustand
+# ou
+yarn add @base-ui/react zustand
+# ou
+pnpm add @base-ui/react zustand
 ```
 
 ## Como Usar
