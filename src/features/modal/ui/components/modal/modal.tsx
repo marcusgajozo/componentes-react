@@ -1,4 +1,4 @@
-import "./theme.css";
+import "../../theme.css";
 
 import { Dialog } from "@base-ui/react/dialog";
 import * as React from "react";

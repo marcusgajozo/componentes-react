@@ -1,3 +1,3 @@
-export * as Modal from "./modal";
-export * from "./use-modal";
-export * from "./use-modal-store";
+export * as Modal from "./components/modal";
+export * from "./hooks/use-modal";
+export * from "./hooks/use-modal-store";

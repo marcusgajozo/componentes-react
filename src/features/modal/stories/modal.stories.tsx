@@ -1,8 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
-import { Modal } from "../ui/index";
-import { useModal } from "../ui/use-modal";
+import { Modal, useModal } from "../ui/index";
 
 const uiFiles = import.meta.glob("../ui/*", {
   query: "?raw",
