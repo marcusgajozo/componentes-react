@@ -19,6 +19,9 @@ importers:
       react-dom:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
+      react-imask:
+        specifier: ^7.6.1
+        version: 7.6.1(react@19.2.6)
       zustand:
         specifier: ^5.0.14
         version: 5.0.14(@types/react@19.2.15)(react@19.2.6)(use-sync-external-store@1.6.0(react@19.2.6))
@@ -232,6 +235,13 @@ packages:
       }
     engines: { node: ">=6.0.0" }
     hasBin: true
+
+  "@babel/runtime-corejs3@7.29.7":
+    resolution:
+      {
+        integrity: sha512-ppj9ouYku+RX0ljtgZd+KMO5mkM2bCqg8H2PYAFWnLsHEIKIdRojqbJ2i3eVHrisuxy7nOFCmngTDdWtUCdXUQ==,
+      }
+    engines: { node: ">=6.9.0" }
 
   "@babel/runtime@7.29.2":
     resolution:
@@ -2340,6 +2350,12 @@ packages:
         integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==,
       }
 
+  core-js-pure@3.49.0:
+    resolution:
+      {
+        integrity: sha512-XM4RFka59xATyJv/cS3O3Kml72hQXUeGRuuTmMYFxwzc9/7C8OYTaIR/Ji+Yt8DXzsFLNhat15cE/JP15HrCgw==,
+      }
+
   cosmiconfig-typescript-loader@6.3.0:
     resolution:
       {
@@ -3114,6 +3130,13 @@ packages:
       }
     engines: { node: ">= 4" }
 
+  imask@7.6.1:
+    resolution:
+      {
+        integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==,
+      }
+    engines: { npm: ">=4.0.0" }
+
   import-fresh@3.3.1:
     resolution:
       {
@@ -3640,6 +3663,13 @@ packages:
         integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==,
       }
 
+  loose-envify@1.4.0:
+    resolution:
+      {
+        integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==,
+      }
+    hasBin: true
+
   loupe@3.2.1:
     resolution:
       {
@@ -3764,6 +3794,13 @@ packages:
       {
         integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==,
       }
+
+  object-assign@4.1.1:
+    resolution:
+      {
+        integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==,
+      }
+    engines: { node: ">=0.10.0" }
 
   object-inspect@1.13.4:
     resolution:
@@ -3980,6 +4017,12 @@ packages:
       }
     engines: { node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0 }
 
+  prop-types@15.8.1:
+    resolution:
+      {
+        integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==,
+      }
+
   punycode@2.3.1:
     resolution:
       {
@@ -4009,6 +4052,21 @@ packages:
       }
     peerDependencies:
       react: ^19.2.6
+
+  react-imask@7.6.1:
+    resolution:
+      {
+        integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==,
+      }
+    engines: { npm: ">=4.0.0" }
+    peerDependencies:
+      react: ">=0.14.0"
+
+  react-is@16.13.1:
+    resolution:
+      {
+        integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
+      }
 
   react-is@17.0.2:
     resolution:
@@ -4882,6 +4940,10 @@ snapshots:
   "@babel/parser@7.29.3":
     dependencies:
       "@babel/types": 7.29.0
+
+  "@babel/runtime-corejs3@7.29.7":
+    dependencies:
+      core-js-pure: 3.49.0
 
   "@babel/runtime@7.29.2": {}
 
@@ -6126,6 +6188,8 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
+  core-js-pure@3.49.0: {}
+
   cosmiconfig-typescript-loader@6.3.0(@types/node@24.12.4)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
       "@types/node": 24.12.4
@@ -6661,6 +6725,10 @@ snapshots:
 
   ignore@7.0.5: {}
 
+  imask@7.6.1:
+    dependencies:
+      "@babel/runtime-corejs3": 7.29.7
+
   import-fresh@3.3.1:
     dependencies:
       parent-module: 1.0.1
@@ -6930,6 +6998,10 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
+  loose-envify@1.4.0:
+    dependencies:
+      js-tokens: 4.0.0
+
   loupe@3.2.1: {}
 
   lru-cache@11.4.0: {}
@@ -6981,6 +7053,8 @@ snapshots:
   natural-compare@1.4.0: {}
 
   node-releases@2.0.44: {}
+
+  object-assign@4.1.1: {}
 
   object-inspect@1.13.4: {}
 
@@ -7150,6 +7224,12 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 17.0.2
 
+  prop-types@15.8.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.1
+
   punycode@2.3.1: {}
 
   react-docgen-typescript@2.4.0(typescript@6.0.3):
@@ -7175,6 +7255,14 @@ snapshots:
     dependencies:
       react: 19.2.6
       scheduler: 0.27.0
+
+  react-imask@7.6.1(react@19.2.6):
+    dependencies:
+      imask: 7.6.1
+      prop-types: 15.8.1
+      react: 19.2.6
+
+  react-is@16.13.1: {}
 
   react-is@17.0.2: {}
 
