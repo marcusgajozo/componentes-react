@@ -1,23 +1,25 @@
 :root {
   --dt-font-family: system-ui, -apple-system, sans-serif;
-  --dt-primary: #0b6128;
+  --dt-primary: #033d64;
   --dt-row-thickness: 10px;
 
-  --dt-neutral: #64748b; /* Altere esta cor base para mudar a escala de cinza da tabela inteira */
+  --dt-neutral: #64748b;
   --dt-bg: #ffffff;
 
-  /* Escala de cinza derivada do dt-neutral */
   --dt-header-bg: color-mix(in srgb, var(--dt-neutral) 8%, #ffffff);
   --dt-row-hover: color-mix(in srgb, var(--dt-neutral) 4%, #ffffff);
   --dt-border: color-mix(in srgb, var(--dt-neutral) 25%, #ffffff);
   --dt-checkbox-border: color-mix(in srgb, var(--dt-neutral) 40%, #ffffff);
   --dt-disabled: color-mix(in srgb, var(--dt-neutral) 40%, #ffffff);
   --dt-icon: var(--dt-neutral);
-  --dt-text-color: #000000; /* Pode ser alterado para color-mix se quiser o texto cinza escuro */
+  --dt-text-color: #000000;
 
-  /* Cores baseadas no primary */
   --dt-row-selected: color-mix(in srgb, var(--dt-primary) 8%, #ffffff);
   --dt-accent: var(--dt-primary);
   --dt-accent-hover: color-mix(in srgb, var(--dt-primary) 85%, #000000);
   --dt-accent-foreground: #ffffff;
+
+  --dt-shadow-alpha-1: rgba(0, 0, 0, 0.1);
+  --dt-shadow-alpha-2: rgba(0, 0, 0, 0.06);
+  --dt-shadow-alpha-3: rgba(0, 0, 0, 0.05);
 }

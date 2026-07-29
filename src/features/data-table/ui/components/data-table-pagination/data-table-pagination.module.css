@@ -96,7 +96,7 @@
   border: 1px solid var(--dt-border);
   border-radius: 6px;
   padding: 4px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px var(--dt-shadow-alpha-1);
   font-size: 14px;
   min-width: 80px;
   z-index: 50;
