@@ -101,11 +101,21 @@ export function MultiSelect({
   }, [options, inputValue]);
 
   const clearAll = React.useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.SyntheticEvent) => {
       e.stopPropagation();
       commitValues([]);
     },
     [commitValues]
+  );
+
+  const clearSearch = React.useCallback(
+    (e: React.SyntheticEvent) => {
+      e.stopPropagation();
+      setInputValue("");
+      const inputEl = document.getElementById(id ?? "") as HTMLInputElement | null;
+      if (inputEl) inputEl.focus();
+    },
+    [id]
   );
 
   return (
@@ -138,6 +148,8 @@ export function MultiSelect({
           disabled={disabled}
           icon={icon}
           isOpen={open}
+          inputValue={inputValue}
+          clearSearch={clearSearch}
         />
         {!disabled && (
           <MultiSelectDropdown

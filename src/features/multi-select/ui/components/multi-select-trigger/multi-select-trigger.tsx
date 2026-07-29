@@ -8,10 +8,12 @@ interface TriggerProps {
   id?: string;
   selectedObjs: Option[];
   placeholder: string;
-  clearAll: (e: React.MouseEvent) => void;
+  clearAll: (e: React.SyntheticEvent) => void;
+  clearSearch?: (e: React.SyntheticEvent) => void;
   disabled?: boolean;
   icon?: React.ReactNode;
   isOpen?: boolean;
+  inputValue?: string;
 }
 
 export function MultiSelectTrigger({
@@ -19,9 +21,11 @@ export function MultiSelectTrigger({
   selectedObjs,
   placeholder,
   clearAll,
+  clearSearch,
   disabled,
   icon,
   isOpen,
+  inputValue = "",
 }: TriggerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const measureRef = React.useRef<HTMLDivElement>(null);
@@ -165,13 +169,22 @@ export function MultiSelectTrigger({
           }
         />
       </div>
+
       <div className={styles.actions}>
-        {selectedObjs.length > 0 && !disabled ? (
+        {(isOpen ? inputValue.length > 0 : selectedObjs.length > 0 && !disabled) ? (
           <button
             type="button"
-            aria-label="Clear all"
+            aria-label={isOpen ? "Clear search" : "Clear all"}
             className={styles.clearAll}
-            onClick={clearAll}
+            onPointerDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isOpen && clearSearch) {
+                clearSearch(e);
+              } else {
+                clearAll(e);
+              }
+            }}
             tabIndex={-1}
           >
             <ClearIcon />
