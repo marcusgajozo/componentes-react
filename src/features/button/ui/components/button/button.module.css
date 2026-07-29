@@ -1,0 +1,68 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  padding: var(--btn-padding);
+  min-height: var(--btn-min-height);
+  font-family: var(--btn-font-family);
+  font-size: var(--btn-font-size);
+  font-weight: 500;
+  border-radius: var(--btn-border-radius);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  background-color: var(--btn-primary-color);
+  color: var(--btn-text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--btn-hover-bg);
+}
+
+.button:disabled {
+  opacity: var(--btn-disabled-opacity);
+  cursor: not-allowed;
+  background-color: var(--btn-disabled-bg);
+  color: var(--btn-disabled-color);
+  border-color: #e5e7eb;
+}
+
+.button:focus-visible {
+  outline: var(--btn-focus-ring-width) solid var(--btn-focus-ring-color);
+  outline-offset: 2px;
+}
+
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+  text-align: center;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.spinnerTrack {
+  opacity: 0.25;
+}
+
+.spinnerHead {
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
