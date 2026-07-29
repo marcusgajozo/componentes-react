@@ -7,4 +7,5 @@
   background-color: var(--dt-bg);
   font-family: var(--dt-font-family);
   box-shadow: 0 1px 3px var(--dt-shadow-alpha-3);
+  overflow: hidden;
 }
