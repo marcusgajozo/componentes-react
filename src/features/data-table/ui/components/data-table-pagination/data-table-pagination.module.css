@@ -95,13 +95,14 @@
   background-color: var(--dt-bg);
   border: 1px solid var(--dt-border);
   border-radius: 6px;
-  padding: 4px;
+  padding: 0;
   box-shadow: 0 4px 6px -1px var(--dt-shadow-alpha-1);
   font-size: 14px;
   min-width: 80px;
   z-index: 50;
   outline: none;
   font-family: var(--dt-font-family);
+  overflow: hidden;
 }
 
 .selectList {
@@ -115,7 +116,6 @@
 
 .selectItem {
   padding: 4px 8px;
-  border-radius: 4px;
   cursor: pointer;
   color: var(--dt-text-color);
   outline: none;
