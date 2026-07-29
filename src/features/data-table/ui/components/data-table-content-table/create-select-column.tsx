@@ -5,7 +5,7 @@ import styles from "./create-select-column.module.css";
 export function createSelectColumn<TData>(): ColumnDef<TData, unknown> {
   return {
     id: "select",
-    size: 60,
+    size: 10,
     header: ({ table }) => (
       <input
         type="checkbox"

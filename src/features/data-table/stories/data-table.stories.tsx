@@ -28,7 +28,7 @@ const data: Viagem[] = [
   {
     id: "1",
     sentido: "Ida",
-    partida: "06h00",
+    partida: "06h00000000000000000000000000000000000000000000000000000000000000000000000000000000",
     chegada: "15h41",
     placa: "-",
     prefixo: "-",

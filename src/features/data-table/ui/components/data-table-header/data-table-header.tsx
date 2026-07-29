@@ -18,9 +18,8 @@ export function DataTableHeader<TData, TValue>() {
             let minWidth: string | number = "max-content";
             if (isCustomMinSize) {
               minWidth = `max(max-content, ${header.column.columnDef.minSize}px)`;
-            }
-            if (isCustomSize) {
-              minWidth = `max(max-content, ${header.column.columnDef.size}px)`;
+            } else if (isCustomSize) {
+              minWidth = `max(max-content, ${header.column.getSize()}px)`;
             }
 
             return (
@@ -29,7 +28,11 @@ export function DataTableHeader<TData, TValue>() {
                 style={{
                   width: isCustomSize ? header.column.getSize() : undefined,
                   minWidth,
-                  maxWidth: isCustomMaxSize ? header.column.columnDef.maxSize : undefined,
+                  maxWidth: isCustomMaxSize
+                    ? header.column.columnDef.maxSize
+                    : isCustomSize
+                      ? header.column.getSize()
+                      : undefined,
                 }}
               >
                 {header.isPlaceholder
