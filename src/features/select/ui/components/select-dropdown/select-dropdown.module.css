@@ -64,20 +64,6 @@
 }
 
 @media (max-width: 640px) {
-  .dropdown {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: var(--sl-border-radius) var(--sl-border-radius) 0 0;
-    max-height: 60vh;
-  }
-
-  .listbox {
-    max-height: 60vh;
-  }
-
   .option {
     padding: 0.75rem 1rem;
     min-height: 44px;
