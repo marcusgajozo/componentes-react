@@ -52,6 +52,7 @@ export function Select({
   );
 
   const [inputValue, setInputValue] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
   const handleValueChange = React.useCallback(
     (val: Option | null) => {
@@ -86,8 +87,16 @@ export function Select({
         inputValue={inputValue}
         onInputValueChange={setInputValue}
         disabled={disabled}
+        open={open}
+        onOpenChange={setOpen}
       >
-        <SelectTrigger id={id} placeholder={placeholder} disabled={disabled} icon={icon} />
+        <SelectTrigger
+          id={id}
+          placeholder={placeholder}
+          disabled={disabled}
+          icon={icon}
+          isOpen={open}
+        />
         {!disabled && (
           <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
         )}
