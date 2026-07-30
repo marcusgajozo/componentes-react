@@ -8,11 +8,14 @@ interface TriggerProps {
   disabled?: boolean;
   icon?: React.ReactNode;
   isOpen?: boolean;
+  isError?: boolean;
 }
 
-export function SelectTrigger({ id, placeholder, disabled, icon, isOpen }: TriggerProps) {
+export function SelectTrigger({ id, placeholder, disabled, icon, isOpen, isError }: TriggerProps) {
   return (
-    <Combobox.InputGroup className={styles.triggerWrapper}>
+    <Combobox.InputGroup
+      className={`${styles.triggerWrapper} ${isError ? styles.error : ""}`.trim()}
+    >
       {icon && <span className={styles.iconWrapper}>{icon}</span>}
       <Combobox.Input
         id={id}

@@ -54,3 +54,19 @@ export const Default: Story = {
     </div>
   ),
 };
+
+export const WithError: Story = {
+  parameters: { layout: "padded" },
+  args: {
+    errorMessage: "Selecione um país válido.",
+  },
+  render: (args) => (
+    <div>
+      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
+        <div style={{ width: "280px" }}>
+          <Select {...args} />
+        </div>
+      </div>
+    </div>
+  ),
+};

@@ -8,6 +8,9 @@
   /* Tipografia */
   --sl-font-family: system-ui, -apple-system, sans-serif;
   --sl-font-size: 0.875rem;
+  --sl-label-size: var(--sl-font-size);
+  --sl-desc-size: 0.75rem;
+  --sl-error-size: 0.75rem;
 
   /* Bordas */
   --sl-border-color: #d1d5db; /* Gray 300 */

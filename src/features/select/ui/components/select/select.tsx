@@ -23,9 +23,12 @@ export interface SelectProps {
   id?: string;
   className?: string;
   label?: string;
+  description?: string;
   required?: boolean;
+  showRequiredText?: boolean;
   noOptionsMessage?: string;
   icon?: React.ReactNode;
+  errorMessage?: string;
 }
 
 export function Select({
@@ -38,9 +41,12 @@ export function Select({
   id,
   className,
   label,
+  description,
   required = false,
+  showRequiredText = false,
   noOptionsMessage = "Nenhuma opção encontrada",
   icon,
+  errorMessage,
 }: SelectProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
@@ -78,9 +84,13 @@ export function Select({
     >
       {label && (
         <label className={styles.label} htmlFor={id}>
-          {label} {required && <span className={styles.required}>*</span>}
+          {label}{" "}
+          {showRequiredText && (
+            <span className={styles.required}>{required ? "(obrigatório)" : "(opcional)"}</span>
+          )}
         </label>
       )}
+      {description && <span className={styles.description}>{description}</span>}
       <Combobox.Root
         value={selectedObj}
         onValueChange={handleValueChange}
@@ -96,11 +106,13 @@ export function Select({
           disabled={disabled}
           icon={icon}
           isOpen={open}
+          isError={Boolean(errorMessage)}
         />
         {!disabled && (
           <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
         )}
       </Combobox.Root>
+      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }
