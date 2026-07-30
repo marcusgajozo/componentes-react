@@ -9,9 +9,18 @@ interface TriggerProps {
   icon?: React.ReactNode;
   isOpen?: boolean;
   isError?: boolean;
+  required?: boolean;
 }
 
-export function SelectTrigger({ id, placeholder, disabled, icon, isOpen, isError }: TriggerProps) {
+export function SelectTrigger({
+  id,
+  placeholder,
+  disabled,
+  icon,
+  isOpen,
+  isError,
+  required,
+}: TriggerProps) {
   return (
     <Combobox.InputGroup
       className={`${styles.triggerWrapper} ${isError ? styles.error : ""}`.trim()}
@@ -22,6 +31,8 @@ export function SelectTrigger({ id, placeholder, disabled, icon, isOpen, isError
         className={styles.searchInputTrigger}
         placeholder={placeholder}
         disabled={disabled}
+        aria-required={required}
+        required={required}
       />
       <Combobox.Trigger
         className={`${styles.chevronButton} ${isOpen ? styles.open : ""}`}

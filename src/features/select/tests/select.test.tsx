@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup,render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, test, vi } from "vitest";
+import { afterEach,describe, expect, test, vi } from "vitest";
 
+afterEach(cleanup);
 import { Select } from "../ui/components/select";
 
 const COUNTRIES = [
@@ -26,7 +27,7 @@ describe("Select Component", () => {
     await user.click(screen.getByRole("option", { name: /^Brasil$/ }));
 
     expect(screen.queryByRole("listbox")).toBeNull();
-    expect(combobox.textContent).toContain("Brasil");
+    expect((combobox as HTMLInputElement).value).toContain("Brasil");
   });
 
   test("Keyboard Navigation", async () => {
@@ -36,14 +37,13 @@ describe("Select Component", () => {
     const combobox = screen.getByRole("combobox");
     combobox.focus();
 
-    await user.keyboard("{Enter}");
+    await user.keyboard("{ArrowDown}");
     expect(screen.getByRole("listbox")).toBeTruthy();
 
-    await user.keyboard("{ArrowDown}");
     await user.keyboard("{Enter}");
 
     expect(screen.queryByRole("listbox")).toBeNull();
-    expect(combobox.textContent).toContain("Brasil");
+    expect((combobox as HTMLInputElement).value).toContain("Brasil");
   });
 
   test("Escape closes without selecting", async () => {
@@ -58,7 +58,7 @@ describe("Select Component", () => {
     await user.keyboard("{Escape}");
 
     expect(screen.queryByRole("listbox")).toBeNull();
-    expect(combobox.textContent).toContain("Selecione...");
+    expect((combobox as HTMLInputElement).value).toBe("");
   });
 
   test("With Label", () => {
@@ -73,11 +73,17 @@ describe("Select Component", () => {
 
   test("With Label Required", () => {
     render(
-      <Select options={COUNTRIES} placeholder="Selecione..." label="País de origem" required />
+      <Select
+        options={COUNTRIES}
+        placeholder="Selecione..."
+        label="País de origem"
+        required
+        showRequiredText
+      />
     );
 
     expect(screen.getByText("País de origem")).toBeTruthy();
-    expect(screen.getByText("*")).toBeTruthy();
+    expect(screen.getByText("(obrigatório)")).toBeTruthy();
 
     const combobox = screen.getByRole("combobox");
     expect(combobox.getAttribute("aria-required")).toBe("true");
@@ -89,7 +95,7 @@ describe("Select Component", () => {
 
     await user.click(screen.getByRole("combobox"));
 
-    const searchInput = screen.getByRole("searchbox");
+    const searchInput = screen.getByRole("combobox");
     await user.type(searchInput, "por");
 
     const options = screen.getAllByRole("option");
@@ -110,6 +116,6 @@ describe("Select Component", () => {
     expect(disabledOption.getAttribute("aria-disabled")).toBe("true");
 
     await user.click(disabledOption);
-    expect(screen.getByRole("combobox").textContent).toContain("Selecione...");
+    expect((screen.getByRole("combobox") as HTMLInputElement).value).toBe("");
   });
 });

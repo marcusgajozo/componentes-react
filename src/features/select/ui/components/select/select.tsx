@@ -107,6 +107,7 @@ export function Select({
           icon={icon}
           isOpen={open}
           isError={Boolean(errorMessage)}
+          required={required}
         />
         {!disabled && (
           <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
