@@ -9,7 +9,11 @@ import { MASKS, type MaskType } from "./masks";
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   mask?: MaskType;
-  error?: string;
+  errorMessage?: string;
+  description?: string;
+  showRequiredText?: boolean;
+  icon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 const TypedIMaskInput = IMaskInput as unknown as React.ComponentType<
@@ -20,39 +24,76 @@ const TypedIMaskInput = IMaskInput as unknown as React.ComponentType<
 >;
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, mask, error, className, id, required, ...props }, ref) => {
+  (
+    {
+      label,
+      mask,
+      errorMessage,
+      description,
+      icon,
+      rightIcon,
+      className,
+      id,
+      required,
+      showRequiredText = false,
+      ...props
+    },
+    ref
+  ) => {
     const generatedId = React.useId();
     const inputId = id || generatedId;
 
     const maskOptions = mask ? MASKS[mask] : undefined;
-    const isError = Boolean(error);
+    const isError = Boolean(errorMessage);
 
     return (
       <div className={[styles.container, className].filter(Boolean).join(" ")}>
         {label && (
           <label className={styles.label} htmlFor={inputId}>
-            {label} {required && <span className={styles.required}>*</span>}
+            {label}{" "}
+            {showRequiredText && (
+              <span className={styles.required}>{required ? "(obrigatório)" : "(opcional)"}</span>
+            )}
           </label>
         )}
+        {description && <span className={styles.description}>{description}</span>}
 
-        {maskOptions ? (
-          <TypedIMaskInput
-            {...maskOptions}
-            {...props}
-            inputRef={ref}
-            id={inputId}
-            className={[styles.input, isError ? styles.inputError : ""].filter(Boolean).join(" ")}
-          />
-        ) : (
-          <input
-            {...props}
-            ref={ref}
-            id={inputId}
-            className={[styles.input, isError ? styles.inputError : ""].filter(Boolean).join(" ")}
-          />
-        )}
+        <div className={styles.inputWrapper}>
+          {icon && <span className={styles.iconWrapper}>{icon}</span>}
+          {maskOptions ? (
+            <TypedIMaskInput
+              {...maskOptions}
+              {...props}
+              inputRef={ref}
+              id={inputId}
+              className={[
+                styles.input,
+                isError ? styles.inputError : "",
+                icon ? styles.inputWithIcon : "",
+                rightIcon ? styles.inputWithRightIcon : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            />
+          ) : (
+            <input
+              {...props}
+              ref={ref}
+              id={inputId}
+              className={[
+                styles.input,
+                isError ? styles.inputError : "",
+                icon ? styles.inputWithIcon : "",
+                rightIcon ? styles.inputWithRightIcon : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            />
+          )}
+          {rightIcon && <span className={styles.rightIconWrapper}>{rightIcon}</span>}
+        </div>
 
-        {error && <span className={styles.errorMessage}>{error}</span>}
+        {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
       </div>
     );
   }

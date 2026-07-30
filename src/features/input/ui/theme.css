@@ -1,6 +1,6 @@
 :root {
   /* Cor Principal - Usada para focus */
-  --in-primary-color: #ca3217;
+  --in-primary-color: #146946;
 
   /* Cores Base - Escala de Cinza para o restante do componente */
   --in-text-color: #111827; /* Gray 900 */
@@ -8,6 +8,9 @@
   /* Tipografia */
   --in-font-family: system-ui, -apple-system, sans-serif;
   --in-font-size: 0.875rem;
+  --in-label-size: var(--in-font-size);
+  --in-desc-size: 0.85rem;
+  --in-error-size: 0.85rem;
 
   /* Bordas */
   --in-border-color: #d1d5db; /* Gray 300 */

@@ -7,13 +7,40 @@
 }
 
 .label {
-  font-size: var(--in-font-size);
+  font-size: var(--in-label-size, var(--in-font-size));
   color: var(--in-label-color);
   font-weight: 500;
 }
 
 .required {
   color: var(--in-required-color);
+}
+
+.description {
+  font-size: var(--in-desc-size, 0.75rem);
+  color: var(--in-placeholder-color, #6b7280);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.iconWrapper {
+  position: absolute;
+  left: 0.5rem;
+  color: var(--in-placeholder-color, #6b7280);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.iconWrapper > svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .input {
@@ -33,7 +60,30 @@
     box-shadow 0.15s ease;
 }
 
-.input:focus-visible {
+.inputWithIcon {
+  padding-left: 2rem;
+}
+
+.rightIconWrapper {
+  position: absolute;
+  right: 0.5rem;
+  color: var(--in-placeholder-color, #6b7280);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Unlike iconWrapper, this one usually has a button inside, so we keep pointer-events */
+}
+
+.rightIconWrapper > svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.inputWithRightIcon {
+  padding-right: 2rem;
+}
+
+.input:focus {
   border-color: var(--in-focus-ring-color);
   box-shadow: 0 0 0 var(--in-focus-ring-width) var(--in-focus-ring-color);
 }
@@ -50,15 +100,11 @@
 
 .inputError {
   border-color: var(--in-error-color);
-}
-
-.inputError:focus-visible {
-  border-color: var(--in-error-color);
   box-shadow: 0 0 0 var(--in-focus-ring-width) var(--in-error-color);
 }
 
 .errorMessage {
-  font-size: 0.75rem;
+  font-size: var(--in-error-size, 0.75rem);
   color: var(--in-error-color);
   margin-top: 0.125rem;
 }

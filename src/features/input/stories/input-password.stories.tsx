@@ -1,31 +1,33 @@
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
-import { Input } from "../ui/index";
+import { InputPassword } from "../ui/index";
 
-const uiFiles = import.meta.glob("../ui/**/*", {
+const uiFiles = import.meta.glob("../ui/components/input-password/*", {
   query: "?raw",
   import: "default",
   eager: true,
 }) as Record<string, string>;
+
 const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
-  name: path.replace("../ui/", ""),
+  name: path.split("/").pop()!,
   content,
 }));
 
 const meta = {
-  title: "Components/Input",
-  component: Input,
+  title: "Components/InputPassword",
+  component: InputPassword,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
   args: {
-    label: "CPF",
-    placeholder: "000.000.000-00",
-    mask: "CPF",
+    label: "Senha",
+    placeholder: "Digite sua senha...",
     onChange: fn(),
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof InputPassword>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -36,28 +38,10 @@ export const Default: Story = {
     <div>
       <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
         <div style={{ width: "280px" }}>
-          <Input {...args} />
+          <InputPassword {...args} />
         </div>
       </div>
-      <DownloadZipButton files={zipFiles} zipName="input" />
-    </div>
-  ),
-};
-
-export const WithoutMask: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Nome",
-    placeholder: "Digite seu nome...",
-    mask: undefined,
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <Input {...args} />
-        </div>
-      </div>
+      <DownloadZipButton files={zipFiles} zipName="input-password" />
     </div>
   ),
 };
@@ -65,17 +49,29 @@ export const WithoutMask: Story = {
 export const WithError: Story = {
   parameters: { layout: "padded" },
   args: {
-    label: "E-mail",
-    placeholder: "Digite seu e-mail...",
-    mask: undefined,
-    errorMessage: "E-mail inválido",
-    defaultValue: "usuario@errado",
+    errorMessage: "A senha deve ter no mínimo 8 caracteres.",
   },
   render: (args) => (
     <div>
       <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
         <div style={{ width: "280px" }}>
-          <Input {...args} />
+          <InputPassword {...args} />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const WithLeftIcon: Story = {
+  parameters: { layout: "padded" },
+  args: {
+    icon: <FontAwesomeIcon icon={faLock} />,
+  },
+  render: (args) => (
+    <div>
+      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
+        <div style={{ width: "280px" }}>
+          <InputPassword {...args} />
         </div>
       </div>
     </div>
