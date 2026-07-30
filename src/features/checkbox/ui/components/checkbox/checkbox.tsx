@@ -16,10 +16,14 @@ export interface CheckboxProps {
   defaultValue?: string[];
   onChange?: (value: string[]) => void;
   label?: string;
+  description?: string;
   required?: boolean;
+  showRequiredText?: boolean;
   disabled?: boolean;
   className?: string;
   id?: string;
+  orientation?: "vertical" | "horizontal";
+  errorMessage?: string;
 }
 
 export function Checkbox({
@@ -28,10 +32,14 @@ export function Checkbox({
   defaultValue,
   onChange,
   label,
+  description,
   required = false,
+  showRequiredText = false,
   disabled = false,
   className,
   id,
+  orientation = "vertical",
+  errorMessage,
 }: CheckboxProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? []);
@@ -58,10 +66,18 @@ export function Checkbox({
     <div className={[styles.container, className].filter(Boolean).join(" ")} id={id}>
       {label && (
         <label className={styles.label}>
-          {label} {required && <span className={styles.required}>*</span>}
+          {label}{" "}
+          {showRequiredText && (
+            <span className={styles.required}>{required ? "(obrigatório)" : "(opcional)"}</span>
+          )}
         </label>
       )}
-      <div className={styles.optionsContainer}>
+      {description && <span className={styles.description}>{description}</span>}
+      <div
+        className={
+          orientation === "horizontal" ? styles.optionsContainerHorizontal : styles.optionsContainer
+        }
+      >
         {options.map((opt) => {
           const isChecked = selectedValues.includes(opt.value);
           const isDisabled = disabled || opt.disabled;
@@ -86,6 +102,7 @@ export function Checkbox({
           );
         })}
       </div>
+      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }

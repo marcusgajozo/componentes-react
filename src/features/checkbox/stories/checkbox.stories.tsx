@@ -48,3 +48,25 @@ export const Default: Story = {
     </div>
   ),
 };
+
+export const Horizontal: Story = {
+  args: {
+    orientation: "horizontal",
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0", maxWidth: "400px" }}>
+      <Checkbox {...args} />
+    </div>
+  ),
+};
+
+export const WithError: Story = {
+  args: {
+    errorMessage: "Selecione pelo menos uma opção válida.",
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0", maxWidth: "280px" }}>
+      <Checkbox {...args} />
+    </div>
+  ),
+};

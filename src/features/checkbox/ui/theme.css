@@ -5,6 +5,9 @@
   /* Tipografia */
   --cb-font-family: system-ui, -apple-system, sans-serif;
   --cb-font-size: 0.875rem;
+  --cb-label-size: var(--cb-font-size);
+  --cb-desc-size: 0.85rem;
+  --cb-error-size: 0.85rem;
 
   /* Cores Base */
   --cb-bg: #ffffff;
