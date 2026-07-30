@@ -23,10 +23,13 @@ export interface MultiSelectProps {
   id?: string;
   className?: string;
   label?: string;
+  description?: string;
   required?: boolean;
+  showRequiredText?: boolean;
   noOptionsMessage?: string;
   maxSelected?: number;
   icon?: React.ReactNode;
+  errorMessage?: string;
 }
 
 export function MultiSelect({
@@ -39,10 +42,13 @@ export function MultiSelect({
   id,
   className,
   label,
+  description,
   required = false,
+  showRequiredText = false,
   noOptionsMessage = "No options found",
   maxSelected,
   icon,
+  errorMessage,
 }: MultiSelectProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? []);
@@ -126,10 +132,13 @@ export function MultiSelect({
     >
       {label && (
         <label htmlFor={id} className={styles.label}>
-          {label}
-          {required && <span className={styles.required}>*</span>}
+          {label}{" "}
+          {showRequiredText && (
+            <span className={styles.required}>{required ? "(obrigatório)" : "(opcional)"}</span>
+          )}
         </label>
       )}
+      {description && <span className={styles.description}>{description}</span>}
       <Combobox.Root
         multiple
         open={open}
@@ -150,6 +159,7 @@ export function MultiSelect({
           isOpen={open}
           inputValue={inputValue}
           clearSearch={clearSearch}
+          isError={Boolean(errorMessage)}
         />
         {!disabled && (
           <MultiSelectDropdown
@@ -168,6 +178,7 @@ export function MultiSelect({
           />
         )}
       </Combobox.Root>
+      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }

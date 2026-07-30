@@ -5,6 +5,9 @@
 
   --ms-font-family: system-ui, -apple-system, sans-serif;
   --ms-font-size: 0.875rem;
+  --ms-label-size: var(--ms-font-size);
+  --ms-desc-size: 0.75rem;
+  --ms-error-size: 0.75rem;
 
   --ms-border-color: #d1d5db; /* Gray 300 */
   --ms-border-radius: 0.375rem;

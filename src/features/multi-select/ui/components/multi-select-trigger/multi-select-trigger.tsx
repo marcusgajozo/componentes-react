@@ -14,6 +14,7 @@ interface TriggerProps {
   icon?: React.ReactNode;
   isOpen?: boolean;
   inputValue?: string;
+  isError?: boolean;
 }
 
 export function MultiSelectTrigger({
@@ -26,6 +27,7 @@ export function MultiSelectTrigger({
   icon,
   isOpen,
   inputValue = "",
+  isError,
 }: TriggerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const measureRef = React.useRef<HTMLDivElement>(null);
@@ -92,7 +94,10 @@ export function MultiSelectTrigger({
   const hiddenCount = selectedObjs.length <= 1 ? 0 : selectedObjs.length - visibleCount;
 
   return (
-    <Combobox.InputGroup className={styles.triggerWrapper} title={tooltipText}>
+    <Combobox.InputGroup
+      className={`${styles.triggerWrapper} ${isError ? styles.error : ""}`.trim()}
+      title={tooltipText}
+    >
       {icon && <span className={styles.iconWrapper}>{icon}</span>}
       <div
         className={styles.chipArea}

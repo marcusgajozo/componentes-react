@@ -20,8 +20,12 @@
 
 .triggerWrapper:focus-within {
   border-color: var(--ms-focus-ring-color);
-  box-shadow: 0 0 0 var(--ms-focus-ring-width)
-    color-mix(in srgb, var(--ms-focus-ring-color) 30%, transparent);
+  box-shadow: 0 0 0 var(--ms-focus-ring-width) var(--ms-focus-ring-color);
+}
+
+.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 var(--ms-focus-ring-width) #ef4444;
 }
 
 .iconWrapper {
