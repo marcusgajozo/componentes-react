@@ -5,6 +5,9 @@
   /* Tipografia */
   --rd-font-family: system-ui, -apple-system, sans-serif;
   --rd-font-size: 0.875rem;
+  --rd-label-size: var(--rd-font-size);
+  --rd-desc-size: 0.75rem;
+  --rd-error-size: 0.75rem;
 
   /* Cores Base */
   --rd-bg: #ffffff;

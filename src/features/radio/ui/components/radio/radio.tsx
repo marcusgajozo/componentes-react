@@ -17,10 +17,14 @@ export interface RadioProps {
   onChange?: (value: string) => void;
   name?: string;
   label?: string;
+  description?: string;
   required?: boolean;
+  showRequiredText?: boolean;
   disabled?: boolean;
   className?: string;
   id?: string;
+  orientation?: "vertical" | "horizontal";
+  errorMessage?: string;
 }
 
 export function Radio({
@@ -30,10 +34,14 @@ export function Radio({
   onChange,
   name,
   label,
+  description,
   required = false,
+  showRequiredText = false,
   disabled = false,
   className,
   id,
+  orientation = "vertical",
+  errorMessage,
 }: RadioProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string>(defaultValue ?? "");
@@ -56,10 +64,18 @@ export function Radio({
     <div className={[styles.container, className].filter(Boolean).join(" ")} id={id}>
       {label && (
         <label className={styles.label}>
-          {label} {required && <span className={styles.required}>*</span>}
+          {label}{" "}
+          {showRequiredText && (
+            <span className={styles.required}>{required ? "(obrigatório)" : "(opcional)"}</span>
+          )}
         </label>
       )}
-      <div className={styles.optionsContainer}>
+      {description && <span className={styles.description}>{description}</span>}
+      <div
+        className={
+          orientation === "horizontal" ? styles.optionsContainerHorizontal : styles.optionsContainer
+        }
+      >
         {options.map((opt) => {
           const isChecked = selectedValue === opt.value;
           const isDisabled = disabled || opt.disabled;
@@ -87,6 +103,7 @@ export function Radio({
           );
         })}
       </div>
+      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }
