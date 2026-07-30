@@ -2,9 +2,9 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, test } from "vitest";
 
+import { useModal } from "../ui/hooks/use-modal";
+import { useModalStore } from "../ui/hooks/use-modal-store";
 import { Modal } from "../ui/index";
-import { useModal } from "../ui/use-modal";
-import { useModalStore } from "../ui/use-modal-store";
 
 afterEach(() => {
   cleanup();
