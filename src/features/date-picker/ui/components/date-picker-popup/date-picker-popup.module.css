@@ -1,0 +1,121 @@
+.popup {
+  z-index: 50;
+  font-family: var(--dp-font-family);
+  background-color: var(--dp-bg-primary);
+  border-radius: 0.75rem;
+  border: 1px solid var(--dp-border-color);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-top: 0.25rem;
+  animation: slideIn 0.2s ease-out;
+}
+
+.timeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--dp-border-color);
+}
+
+.timeLabel {
+  font-size: var(--dp-font-size);
+  color: var(--dp-text-primary);
+  font-weight: 500;
+}
+
+.timeInput {
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--dp-border-color);
+  font-size: var(--dp-font-size);
+  font-family: inherit;
+  color: var(--dp-text-primary);
+  background-color: var(--dp-bg-primary);
+}
+
+.timeInput:focus {
+  outline: none;
+  border-color: var(--dp-primary-color);
+  box-shadow: 0 0 0 2px var(--dp-primary-light);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* DayPicker Overrides for a more premium look */
+:global(.rdp-root) {
+  --rdp-accent-color: var(--dp-primary-color);
+  --rdp-accent-background-color: var(--dp-primary-light);
+  --rdp-day-height: 2.25rem;
+  --rdp-day-width: 2.25rem;
+  margin: 0;
+  font-family: inherit;
+}
+
+:global(.rdp-day_selected:not(.rdp-day_range_middle)) {
+  background-color: var(--rdp-accent-color);
+  color: white;
+  font-weight: 600;
+}
+
+:global(.rdp-day_today:not(.rdp-day_selected)) {
+  color: var(--dp-text-primary);
+  font-weight: 600;
+  background-color: var(--dp-bg-view);
+  border-radius: 100%;
+}
+
+.todayButton {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  border-radius: var(--dp-border-radius);
+  background-color: transparent;
+  color: var(--dp-primary-color);
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todayButton:hover {
+  background-color: var(--dp-bg-view);
+}
+
+@media (max-width: 480px) {
+  .popup {
+    max-width: 95vw;
+    padding: 0.75rem;
+    overflow-x: auto;
+  }
+
+  :global(.rdp-root) {
+    --rdp-day-height: 2.125rem;
+    --rdp-day-width: 2.125rem;
+    font-size: var(--dp-font-size);
+  }
+
+  .timeContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+}

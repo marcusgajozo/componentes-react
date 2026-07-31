@@ -1,0 +1,71 @@
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--dp-border-radius);
+  border: 1px solid var(--dp-border-color);
+  background-color: var(--dp-bg-primary);
+  transition: all 0.2s ease-in-out;
+}
+
+.inputWrapper:hover:not(.disabled) {
+  border-color: var(--dp-primary-color);
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--dp-primary-color);
+  box-shadow: 0 0 0 2px var(--dp-primary-light);
+}
+
+.inputWrapper.disabled {
+  background-color: var(--dp-bg-disabled);
+}
+
+.inputWrapperError {
+  border-color: var(--dp-danger-color);
+}
+
+.inputWrapperError:focus-within {
+  box-shadow: 0 0 0 2px var(--dp-danger-light);
+}
+
+.triggerInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--dp-text-primary);
+  font-size: var(--dp-font-size);
+  font-family: inherit;
+  padding: 0;
+}
+
+.triggerInput:disabled {
+  color: var(--dp-text-tertiary);
+  cursor: not-allowed;
+}
+
+.triggerInput::placeholder {
+  color: var(--dp-text-tertiary);
+}
+
+.triggerButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--dp-text-tertiary);
+}
+.triggerButton:disabled {
+  cursor: not-allowed;
+}
+
+.icon {
+  color: var(--dp-text-tertiary);
+  display: flex;
+  align-items: center;
+}

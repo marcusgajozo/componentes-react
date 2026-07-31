@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  font-family: var(--dp-font-family);
+}
+
+.label {
+  font-weight: 500;
+  font-size: var(--dp-font-size);
+  color: var(--dp-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  font-size: 0.75rem;
+  color: var(--dp-text-tertiary);
+  font-weight: 400;
+}
+
+.description {
+  font-size: 0.75rem;
+  color: var(--dp-text-secondary);
+}
+
+.errorMessage {
+  font-size: 0.75rem;
+  color: var(--dp-danger-color);
+  margin-top: 0.25rem;
+}
+
+.viewText {
+  font-size: var(--dp-font-size);
+  color: var(--dp-text-primary);
+  padding: 0.5rem 0;
+  background-color: transparent;
+  border: none;
+  min-height: calc(2.25rem - 2px);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  line-height: 1.5;
+}
