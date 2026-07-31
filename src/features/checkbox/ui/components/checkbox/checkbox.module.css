@@ -95,3 +95,16 @@
   color: #ef4444; /* Standard red error color, can be updated with variable */
   margin-top: 0.125rem;
 }
+
+.viewText {
+  color: var(--cb-text-color, #111827);
+  font-size: var(--cb-font-size, 0.875rem);
+  margin: 0;
+  padding: 0.5rem 0;
+  min-height: calc(2.25rem - 2px);
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}

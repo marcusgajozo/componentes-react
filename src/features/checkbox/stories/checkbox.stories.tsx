@@ -70,3 +70,16 @@ export const WithError: Story = {
     </div>
   ),
 };
+
+export const ReadOnly: Story = {
+  args: {
+    label: "Frameworks Selecionados",
+    value: ["react", "angular"],
+    readOnly: true,
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0", maxWidth: "280px" }}>
+      <Checkbox {...args} />
+    </div>
+  ),
+};

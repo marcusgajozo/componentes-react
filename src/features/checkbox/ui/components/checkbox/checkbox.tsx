@@ -24,6 +24,7 @@ export interface CheckboxProps {
   id?: string;
   orientation?: "vertical" | "horizontal";
   errorMessage?: string;
+  readOnly?: boolean;
 }
 
 export function Checkbox({
@@ -40,6 +41,7 @@ export function Checkbox({
   id,
   orientation = "vertical",
   errorMessage,
+  readOnly = false,
 }: CheckboxProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? []);
@@ -73,36 +75,50 @@ export function Checkbox({
         </label>
       )}
       {description && <span className={styles.description}>{description}</span>}
-      <div
-        className={
-          orientation === "horizontal" ? styles.optionsContainerHorizontal : styles.optionsContainer
-        }
-      >
-        {options.map((opt) => {
-          const isChecked = selectedValues.includes(opt.value);
-          const isDisabled = disabled || opt.disabled;
-          return (
-            <label
-              key={opt.value}
-              className={[styles.optionLabel, isDisabled ? styles.disabled : ""]
+
+      {readOnly ? (
+        <p className={styles.viewText}>
+          {selectedValues.length > 0
+            ? selectedValues
+                .map((val) => options.find((o) => o.value === val)?.label)
                 .filter(Boolean)
-                .join(" ")}
-            >
-              <input
-                type="checkbox"
-                className={styles.input}
-                value={opt.value}
-                checked={isChecked}
-                disabled={isDisabled}
-                onChange={(e) => handleChange(opt.value, e.target.checked)}
-              />
-              <span className={styles.customCheckbox}>{isChecked && <CheckIcon />}</span>
-              <span className={styles.labelText}>{opt.label}</span>
-            </label>
-          );
-        })}
-      </div>
-      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+                .join(", ")
+            : "-"}
+        </p>
+      ) : (
+        <div
+          className={
+            orientation === "horizontal"
+              ? styles.optionsContainerHorizontal
+              : styles.optionsContainer
+          }
+        >
+          {options.map((opt) => {
+            const isChecked = selectedValues.includes(opt.value);
+            const isDisabled = disabled || opt.disabled;
+            return (
+              <label
+                key={opt.value}
+                className={[styles.optionLabel, isDisabled ? styles.disabled : ""]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <input
+                  type="checkbox"
+                  className={styles.input}
+                  value={opt.value}
+                  checked={isChecked}
+                  disabled={isDisabled}
+                  onChange={(e) => handleChange(opt.value, e.target.checked)}
+                />
+                <span className={styles.customCheckbox}>{isChecked && <CheckIcon />}</span>
+                <span className={styles.labelText}>{opt.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+      {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }
