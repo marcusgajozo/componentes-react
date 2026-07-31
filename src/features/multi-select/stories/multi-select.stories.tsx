@@ -5,6 +5,7 @@ import { fn } from "storybook/test";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { MultiSelect } from "../ui/index";
+import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/*", {
   query: "?raw",
@@ -28,7 +29,14 @@ const FRAMEWORKS: { value: string; label: string; disabled?: boolean }[] = [
 const meta = {
   title: "Components/MultiSelect",
   component: MultiSelect,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
+  },
   tags: ["autodocs"],
   args: {
     options: FRAMEWORKS,

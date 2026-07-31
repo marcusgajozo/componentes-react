@@ -5,6 +5,7 @@ import { fn } from "storybook/test";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { Select } from "../ui/index";
+import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/*", {
   query: "?raw",
@@ -28,7 +29,14 @@ const COUNTRIES: { value: string; label: string; disabled?: boolean }[] = [
 const meta = {
   title: "Components/Select",
   component: Select,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
+  },
   tags: ["autodocs"],
   args: {
     options: COUNTRIES,

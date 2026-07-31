@@ -2,12 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTable, type DataTableProps } from "../ui";
+import readme from "../ui/README.md?raw";
 
 const meta: Meta<DataTableProps<Viagem>> = {
   title: "Components/DataTable",
   component: DataTable,
   parameters: {
     layout: "padded",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
   },
 };
 

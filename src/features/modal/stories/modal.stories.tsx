@@ -2,6 +2,7 @@ import type { Meta } from "@storybook/react-vite";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { Modal, useModal } from "../ui/index";
+import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/*", {
   query: "?raw",
@@ -18,6 +19,11 @@ const meta = {
   component: Modal.Root,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof Modal.Root>;

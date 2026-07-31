@@ -3,6 +3,7 @@ import { fn } from "storybook/test";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { InputFile } from "../ui/index";
+import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/**/*", {
   query: "?raw",
@@ -17,7 +18,14 @@ const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
 const meta = {
   title: "Components/InputFile",
   component: InputFile,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
+  },
   tags: ["autodocs"],
   args: {
     onChange: fn(),

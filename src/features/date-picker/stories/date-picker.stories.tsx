@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { DatePicker } from "../ui/index";
+import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/**/*", {
   query: "?raw",
@@ -18,7 +19,14 @@ const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
 const meta = {
   title: "Components/DatePicker",
   component: DatePicker,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: readme,
+      },
+    },
+  },
   tags: ["autodocs"],
   args: {
     label: "Data de Nascimento",
