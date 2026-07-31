@@ -12,14 +12,15 @@ Uma biblioteca de componentes React estilo copiar-colar. Sem pacotes npm, sem de
 
 ## Tecnologias (Stack)
 
-| Ferramenta          | Propósito                                |
-| ------------------- | ---------------------------------------- |
-| React               | Biblioteca de UI (apenas peer dep)       |
-| TypeScript          | Tipagem estática e segurança             |
-| Vite                | Empacotador (Bundler) & servidor de dev  |
-| CSS Modules         | Estilos com escopo, sem peso em execução |
-| Storybook           | Explorador de componentes & documentação |
-| Vitest + Playwright | Testes de interação no navegador         |
+| Ferramenta          | Propósito                                   |
+| ------------------- | ------------------------------------------- |
+| React               | Biblioteca de UI (apenas peer dep)          |
+| TypeScript          | Tipagem estática e segurança                |
+| Vite                | Empacotador (Bundler) & servidor de dev     |
+| CSS Modules         | Estilos com escopo, sem peso em execução    |
+| Storybook           | Explorador de componentes & documentação    |
+| Vitest + Playwright | Testes de interação no navegador            |
+| react-hook-form     | Integração opcional para uso em formulários |
 
 ## Componentes Disponíveis
 
@@ -45,6 +46,9 @@ pnpm build-storybook   # build estático → storybook-static/
 4. Jogue os arquivos no seu projeto e importe o componente.
 
 Nenhuma configuração ou utilitário compartilhado é necessário — cada componente é inteiramente autônomo.
+
+**Nota sobre Formulários:**
+Os componentes possuem versões específicas com o prefixo `Form` (ex: `FormInput`, `FormSelect`) que já vêm integrados com o `Controller` do `react-hook-form`. Se desejar utilizá-las, certifique-se de instalar o pacote `react-hook-form` no seu projeto.
 
 ## Implantação (Deployment)
 
