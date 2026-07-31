@@ -101,3 +101,14 @@
 .uploadButton:hover:not(:disabled) .uploadButtonIcon {
   color: #ffffff;
 }
+
+.viewText {
+  color: var(--in-text-color);
+  font-size: var(--in-font-size, 0.875rem);
+  margin: 0;
+  padding: 0.5rem 0;
+  min-height: calc(2.25rem - 2px);
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}

@@ -14,6 +14,7 @@ export interface InputFileProps extends Omit<React.InputHTMLAttributes<HTMLInput
   showRequiredText?: boolean;
   showDropZone?: boolean;
   maxFiles?: number;
+  readOnly?: boolean;
 }
 
 export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
@@ -31,6 +32,7 @@ export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
       onChange,
       disabled,
       multiple,
+      readOnly = false,
       ...props
     },
     ref
@@ -158,57 +160,64 @@ export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
           </label>
         )}
 
-        <div className={styles.inputWrapper}>
-          <input
-            {...props}
-            type="file"
-            ref={ref}
-            id={inputId}
-            onChange={handleChange}
-            required={required}
-            disabled={effectivelyDisabled}
-            multiple={multiple}
-            className={styles.hiddenInput}
-          />
-          {showDropZone ? (
-            <DropZone
-              inputId={inputId}
-              isError={isError}
-              isDragging={isDragging}
-              handleDragEnter={handleDragEnter}
-              handleDragLeave={handleDragLeave}
-              handleDragOver={handleDragOver}
-              handleDrop={handleDrop}
-            />
-          ) : (
-            <button
-              type="button"
-              className={styles.uploadButton}
-              onClick={() => {
-                const input = document.getElementById(inputId);
-                if (input) input.click();
-              }}
+        {!readOnly && (
+          <div className={styles.inputWrapper}>
+            <input
+              {...props}
+              type="file"
+              ref={ref}
+              id={inputId}
+              onChange={handleChange}
+              required={required}
               disabled={effectivelyDisabled}
-            >
-              <UploadIcon className={styles.uploadButtonIcon} />
-              {multiple ? "Escolher arquivos" : "Escolher arquivo"}
-            </button>
-          )}
-        </div>
+              multiple={multiple}
+              className={styles.hiddenInput}
+            />
+            {showDropZone ? (
+              <DropZone
+                inputId={inputId}
+                isError={isError}
+                isDragging={isDragging}
+                handleDragEnter={handleDragEnter}
+                handleDragLeave={handleDragLeave}
+                handleDragOver={handleDragOver}
+                handleDrop={handleDrop}
+              />
+            ) : (
+              <button
+                type="button"
+                className={styles.uploadButton}
+                onClick={() => {
+                  const input = document.getElementById(inputId);
+                  if (input) input.click();
+                }}
+                disabled={effectivelyDisabled}
+              >
+                <UploadIcon className={styles.uploadButtonIcon} />
+                {multiple ? "Escolher arquivos" : "Escolher arquivo"}
+              </button>
+            )}
+          </div>
+        )}
 
         {description && <span className={styles.description}>{description}</span>}
 
-        {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+        {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
 
-        <FileList
-          selectedFiles={selectedFiles}
-          multiple={multiple}
-          disabled={effectivelyDisabled}
-          removeAllFiles={removeAllFiles}
-          handleDownload={handleDownload}
-          removeFile={removeFile}
-          uploadVersion={uploadVersion}
-        />
+        {readOnly && selectedFiles.length === 0 ? (
+          <p className={styles.viewText}>Nenhum arquivo</p>
+        ) : (
+          <FileList
+            selectedFiles={selectedFiles}
+            multiple={multiple}
+            disabled={effectivelyDisabled}
+            removeAllFiles={removeAllFiles}
+            handleDownload={handleDownload}
+            removeFile={removeFile}
+            uploadVersion={uploadVersion}
+            readOnly={readOnly}
+          />
+        )}
       </div>
     );
   }

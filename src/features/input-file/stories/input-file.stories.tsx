@@ -116,3 +116,20 @@ export const Multiple: Story = {
     </div>
   ),
 };
+
+export const ReadOnly: Story = {
+  parameters: { layout: "padded" },
+  args: {
+    label: "Arquivos Enviados",
+    readOnly: true,
+  },
+  render: (args) => (
+    <div>
+      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
+        <div style={{ width: "280px" }}>
+          <InputFile {...args} />
+        </div>
+      </div>
+    </div>
+  ),
+};

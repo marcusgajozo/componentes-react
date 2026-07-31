@@ -11,6 +11,7 @@ interface FileListProps {
   handleDownload: (file: File) => void;
   removeFile: (index: number) => void;
   uploadVersion: number;
+  readOnly?: boolean;
 }
 
 const formatFileSize = (bytes: number) => {
@@ -29,6 +30,7 @@ export function FileList({
   handleDownload,
   removeFile,
   uploadVersion,
+  readOnly = false,
 }: FileListProps) {
   const [visibleCount, setVisibleCount] = React.useState(3);
   const [prevUploadVersion, setPrevUploadVersion] = React.useState(uploadVersion);
@@ -54,15 +56,17 @@ export function FileList({
           <span className={styles.fileListTitle}>
             {selectedFiles.length} arquivo(s) selecionado(s)
           </span>
-          <button
-            type="button"
-            className={styles.removeAllButton}
-            onClick={removeAllFiles}
-            disabled={disabled}
-            title="Limpar todos os selecionados"
-          >
-            Limpar todos
-          </button>
+          {!readOnly && (
+            <button
+              type="button"
+              className={styles.removeAllButton}
+              onClick={removeAllFiles}
+              disabled={disabled}
+              title="Limpar todos os selecionados"
+            >
+              Limpar todos
+            </button>
+          )}
         </div>
       )}
       <ul className={styles.fileList}>
@@ -87,15 +91,17 @@ export function FileList({
               >
                 <DownloadIcon />
               </button>
-              <button
-                type="button"
-                className={styles.actionButton}
-                onClick={() => removeFile(idx)}
-                disabled={disabled}
-                title="Remover arquivo"
-              >
-                <XIcon />
-              </button>
+              {!readOnly && (
+                <button
+                  type="button"
+                  className={styles.actionButton}
+                  onClick={() => removeFile(idx)}
+                  disabled={disabled}
+                  title="Remover arquivo"
+                >
+                  <XIcon />
+                </button>
+              )}
             </div>
           </li>
         ))}
