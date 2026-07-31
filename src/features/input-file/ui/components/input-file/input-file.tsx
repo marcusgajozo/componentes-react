@@ -37,7 +37,7 @@ export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
     },
     ref
   ) => {
-    const generatedId = React.useId();
+    const [generatedId] = React.useState(() => `id-${Math.random().toString(36).slice(2, 9)}`);
     const inputId = id || generatedId;
     const isError = Boolean(errorMessage);
     const [selectedFiles, setSelectedFiles] = React.useState<File[]>([]);

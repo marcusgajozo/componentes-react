@@ -41,7 +41,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const generatedId = React.useId();
+    const [generatedId] = React.useState(() => `id-${Math.random().toString(36).slice(2, 9)}`);
     const inputId = id || generatedId;
 
     const maskOptions = mask ? MASKS[mask] : undefined;

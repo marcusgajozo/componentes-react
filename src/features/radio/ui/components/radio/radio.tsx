@@ -50,7 +50,7 @@ export function Radio({
 
   const selectedValue = isControlled ? value : internalValue;
 
-  const defaultName = React.useId();
+  const [defaultName] = React.useState(() => `name-${Math.random().toString(36).slice(2, 9)}`);
   const groupName = name || defaultName;
 
   const handleChange = (optionValue: string) => {
