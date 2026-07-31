@@ -7,15 +7,16 @@ Um componente customizado de entrada de texto (Input) que já inclui suporte a m
 Para utilizar o componente `Input` com máscaras, você precisa instalar a seguinte biblioteca no seu projeto:
 
 - `react-imask` e `imask`: Utilizada para o controle e aplicação das máscaras nos inputs.
+- `react-hook-form` (Opcional): Necessária apenas se for utilizar as versões de formulário (`FormInput`, `FormInputNumeric`, `FormInputPassword`, `FormInputFile`).
 
 **Instalação:**
 
 ```bash
-npm install react-imask imask
+npm install react-imask imask react-hook-form
 # ou
-yarn add react-imask imask
+yarn add react-imask imask react-hook-form
 # ou
-pnpm add react-imask imask
+pnpm add react-imask imask react-hook-form
 ```
 
 Após instalar as dependências, basta copiar a pasta `input` para dentro de `src/features/` do seu projeto.
