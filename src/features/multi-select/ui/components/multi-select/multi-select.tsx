@@ -30,6 +30,7 @@ export interface MultiSelectProps {
   maxSelected?: number;
   icon?: React.ReactNode;
   errorMessage?: string;
+  readOnly?: boolean;
 }
 
 export function MultiSelect({
@@ -49,6 +50,7 @@ export function MultiSelect({
   maxSelected,
   icon,
   errorMessage,
+  readOnly = false,
 }: MultiSelectProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? []);
@@ -139,46 +141,53 @@ export function MultiSelect({
         </label>
       )}
       {description && <span className={styles.description}>{description}</span>}
-      <Combobox.Root
-        multiple
-        open={open}
-        onOpenChange={setOpen}
-        value={selectedObjs}
-        onValueChange={handleValueChange}
-        inputValue={inputValue}
-        onInputValueChange={setInputValue}
-        disabled={disabled}
-      >
-        <MultiSelectTrigger
-          id={id}
-          selectedObjs={selectedObjs}
-          placeholder={placeholder}
-          clearAll={clearAll}
-          disabled={disabled}
-          icon={icon}
-          isOpen={open}
+
+      {readOnly ? (
+        <p className={styles.viewText}>
+          {selectedObjs.length > 0 ? selectedObjs.map((o) => o.label).join(", ") : "-"}
+        </p>
+      ) : (
+        <Combobox.Root
+          multiple
+          open={open}
+          onOpenChange={setOpen}
+          value={selectedObjs}
+          onValueChange={handleValueChange}
           inputValue={inputValue}
-          clearSearch={clearSearch}
-          isError={Boolean(errorMessage)}
-        />
-        {!disabled && (
-          <MultiSelectDropdown
-            options={filteredOptions}
-            noOptionsMessage={noOptionsMessage}
-            maxSelected={maxSelected}
-            currentSelectedCount={selectedObjs.length}
-            isAllSelected={
-              selectedObjs.filter((o) => !o.disabled).length > 0 &&
-              selectedObjs.filter((o) => !o.disabled).length === selectableOptions.length
-            }
-            isIndeterminate={
-              selectedObjs.filter((o) => !o.disabled).length > 0 &&
-              selectedObjs.filter((o) => !o.disabled).length < selectableOptions.length
-            }
+          onInputValueChange={setInputValue}
+          disabled={disabled}
+        >
+          <MultiSelectTrigger
+            id={id}
+            selectedObjs={selectedObjs}
+            placeholder={placeholder}
+            clearAll={clearAll}
+            disabled={disabled}
+            icon={icon}
+            isOpen={open}
+            inputValue={inputValue}
+            clearSearch={clearSearch}
+            isError={Boolean(errorMessage)}
           />
-        )}
-      </Combobox.Root>
-      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+          {!disabled && (
+            <MultiSelectDropdown
+              options={filteredOptions}
+              noOptionsMessage={noOptionsMessage}
+              maxSelected={maxSelected}
+              currentSelectedCount={selectedObjs.length}
+              isAllSelected={
+                selectedObjs.filter((o) => !o.disabled).length > 0 &&
+                selectedObjs.filter((o) => !o.disabled).length === selectableOptions.length
+              }
+              isIndeterminate={
+                selectedObjs.filter((o) => !o.disabled).length > 0 &&
+                selectedObjs.filter((o) => !o.disabled).length < selectableOptions.length
+              }
+            />
+          )}
+        </Combobox.Root>
+      )}
+      {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }

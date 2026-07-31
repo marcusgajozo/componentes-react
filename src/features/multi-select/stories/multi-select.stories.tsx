@@ -70,3 +70,21 @@ export const WithError: Story = {
     </div>
   ),
 };
+
+export const ReadOnly: Story = {
+  parameters: { layout: "padded" },
+  args: {
+    label: "Frameworks Selecionados",
+    value: ["react", "vue"],
+    readOnly: true,
+  },
+  render: (args) => (
+    <div>
+      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
+        <div style={{ width: "320px" }}>
+          <MultiSelect {...args} />
+        </div>
+      </div>
+    </div>
+  ),
+};
