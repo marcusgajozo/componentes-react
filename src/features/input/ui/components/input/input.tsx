@@ -49,7 +49,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     let displayValue = String(props.value ?? props.defaultValue ?? "");
     if (readOnly && displayValue && maskOptions) {
-      const pipe = IMask.createPipe(maskOptions as IMask.AnyMaskedOptions);
+      const pipe = IMask.createPipe(
+        maskOptions as unknown as Parameters<typeof IMask.createPipe>[0]
+      );
       displayValue = pipe(displayValue);
     }
 
