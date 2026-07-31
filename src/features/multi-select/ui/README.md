@@ -7,15 +7,16 @@ Um componente customizado de seleção múltipla (MultiSelect) construído usand
 Para utilizar o componente `MultiSelect`, você precisa instalar a seguinte biblioteca no seu projeto:
 
 - `@base-ui/react`: Fornece componentes acessíveis não estilizados (utilizado o componente combobox).
+- `react-hook-form` (Opcional): Necessária apenas se for utilizar a versão de formulário (`FormMultiSelect`).
 
 **Instalação:**
 
 ```bash
-npm install @base-ui/react
+npm install @base-ui/react react-hook-form
 # ou
-yarn add @base-ui/react
+yarn add @base-ui/react react-hook-form
 # ou
-pnpm add @base-ui/react
+pnpm add @base-ui/react react-hook-form
 ```
 
 Após instalar a dependência, basta copiar a pasta `multi-select` para dentro de `src/features/` do seu projeto.
