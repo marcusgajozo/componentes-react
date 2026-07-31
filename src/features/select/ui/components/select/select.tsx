@@ -29,6 +29,7 @@ export interface SelectProps {
   noOptionsMessage?: string;
   icon?: React.ReactNode;
   errorMessage?: string;
+  readOnly?: boolean;
 }
 
 export function Select({
@@ -47,6 +48,7 @@ export function Select({
   noOptionsMessage = "Nenhuma opção encontrada",
   icon,
   errorMessage,
+  readOnly = false,
 }: SelectProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState(defaultValue ?? "");
@@ -91,29 +93,34 @@ export function Select({
         </label>
       )}
       {description && <span className={styles.description}>{description}</span>}
-      <Combobox.Root
-        value={selectedObj}
-        onValueChange={handleValueChange}
-        inputValue={inputValue}
-        onInputValueChange={setInputValue}
-        disabled={disabled}
-        open={open}
-        onOpenChange={setOpen}
-      >
-        <SelectTrigger
-          id={id}
-          placeholder={placeholder}
+
+      {readOnly ? (
+        <p className={styles.viewText}>{selectedObj?.label || "-"}</p>
+      ) : (
+        <Combobox.Root
+          value={selectedObj}
+          onValueChange={handleValueChange}
+          inputValue={inputValue}
+          onInputValueChange={setInputValue}
           disabled={disabled}
-          icon={icon}
-          isOpen={open}
-          isError={Boolean(errorMessage)}
-          required={required}
-        />
-        {!disabled && (
-          <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
-        )}
-      </Combobox.Root>
-      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+          open={open}
+          onOpenChange={setOpen}
+        >
+          <SelectTrigger
+            id={id}
+            placeholder={placeholder}
+            disabled={disabled}
+            icon={icon}
+            isOpen={open}
+            isError={Boolean(errorMessage)}
+            required={required}
+          />
+          {!disabled && (
+            <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
+          )}
+        </Combobox.Root>
+      )}
+      {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }
