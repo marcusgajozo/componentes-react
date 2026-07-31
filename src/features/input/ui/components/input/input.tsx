@@ -1,7 +1,7 @@
 import "../../theme.css";
 
 import * as React from "react";
-import { IMaskInput } from "react-imask";
+import { IMask, IMaskInput } from "react-imask";
 
 import styles from "./input.module.css";
 import { MASKS, type MaskType } from "./masks";
@@ -36,6 +36,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id,
       required,
       showRequiredText = false,
+      readOnly = false,
       ...props
     },
     ref
@@ -45,6 +46,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const maskOptions = mask ? MASKS[mask] : undefined;
     const isError = Boolean(errorMessage);
+
+    let displayValue = String(props.value ?? props.defaultValue ?? "");
+    if (readOnly && displayValue && maskOptions) {
+      const pipe = IMask.createPipe(maskOptions as IMask.AnyMaskedOptions);
+      displayValue = pipe(displayValue);
+    }
 
     return (
       <div className={[styles.container, className].filter(Boolean).join(" ")}>
@@ -58,42 +65,46 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         {description && <span className={styles.description}>{description}</span>}
 
-        <div className={styles.inputWrapper}>
-          {icon && <span className={styles.iconWrapper}>{icon}</span>}
-          {maskOptions ? (
-            <TypedIMaskInput
-              {...maskOptions}
-              {...props}
-              inputRef={ref}
-              id={inputId}
-              className={[
-                styles.input,
-                isError ? styles.inputError : "",
-                icon ? styles.inputWithIcon : "",
-                rightIcon ? styles.inputWithRightIcon : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            />
-          ) : (
-            <input
-              {...props}
-              ref={ref}
-              id={inputId}
-              className={[
-                styles.input,
-                isError ? styles.inputError : "",
-                icon ? styles.inputWithIcon : "",
-                rightIcon ? styles.inputWithRightIcon : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-            />
-          )}
-          {rightIcon && <span className={styles.rightIconWrapper}>{rightIcon}</span>}
-        </div>
+        {readOnly ? (
+          <p className={styles.viewText}>{displayValue || "-"}</p>
+        ) : (
+          <div className={styles.inputWrapper}>
+            {icon && <span className={styles.iconWrapper}>{icon}</span>}
+            {maskOptions ? (
+              <TypedIMaskInput
+                {...maskOptions}
+                {...props}
+                inputRef={ref}
+                id={inputId}
+                className={[
+                  styles.input,
+                  isError ? styles.inputError : "",
+                  icon ? styles.inputWithIcon : "",
+                  rightIcon ? styles.inputWithRightIcon : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              />
+            ) : (
+              <input
+                {...props}
+                ref={ref}
+                id={inputId}
+                className={[
+                  styles.input,
+                  isError ? styles.inputError : "",
+                  icon ? styles.inputWithIcon : "",
+                  rightIcon ? styles.inputWithRightIcon : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              />
+            )}
+            {rightIcon && <span className={styles.rightIconWrapper}>{rightIcon}</span>}
+          </div>
+        )}
 
-        {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+        {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
       </div>
     );
   }
