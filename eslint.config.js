@@ -9,6 +9,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactYouMightNotNeedAnEffect from "eslint-plugin-react-you-might-not-need-an-effect";
 
 const localPlugin = {
   rules: {
@@ -41,6 +42,7 @@ const localPlugin = {
 
 export default defineConfig([
   globalIgnores(["dist", "storybook-static"]),
+  reactYouMightNotNeedAnEffect.configs.recommended,
   jsxA11y.flatConfigs.recommended,
   {
     files: ["**/*.{ts,tsx}"],
