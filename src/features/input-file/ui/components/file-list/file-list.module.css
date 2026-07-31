@@ -1,0 +1,149 @@
+.fileListWrapper {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fileListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+}
+
+.fileListTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--in-placeholder-color, #6b7280);
+}
+
+.removeAllButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--in-error-color);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.15s ease;
+  font-family: inherit;
+}
+
+.removeAllButton:hover {
+  opacity: 0.8;
+}
+
+.removeAllButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--in-border-color);
+  border-radius: var(--in-border-radius);
+  background-color: var(--in-bg);
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+}
+
+.fileIcon {
+  flex-shrink: 0;
+  color: var(--in-placeholder-color, #6b7280);
+}
+
+.fileDetails {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fileName {
+  color: var(--in-text-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.fileSize {
+  color: var(--in-placeholder-color, #6b7280);
+  font-size: 0.75rem;
+}
+
+.fileActions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--in-placeholder-color, #6b7280);
+  padding: 0.375rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.actionButton:hover {
+  background-color: color-mix(in srgb, var(--in-placeholder-color) 10%, transparent);
+  color: var(--in-text-color);
+}
+
+.actionButton:last-child:hover {
+  background-color: color-mix(in srgb, var(--in-error-color) 10%, transparent);
+  color: var(--in-error-color);
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loadMoreButton {
+  margin-top: 0.25rem;
+  background: none;
+  border: none;
+  color: var(--in-placeholder-color, #6b7280);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  align-self: flex-start;
+  transition: color 0.15s ease;
+  font-family: inherit;
+}
+
+.loadMoreButton:hover {
+  color: var(--in-text-color);
+}

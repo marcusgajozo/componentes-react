@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--in-font-family);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--in-label-size, var(--in-font-size));
+  color: var(--in-label-color);
+  font-weight: 500;
+}
+
+.required {
+  color: var(--in-required-color);
+}
+
+.description {
+  font-size: var(--in-desc-size, 0.75rem);
+  color: var(--in-placeholder-color, #6b7280);
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hiddenInput:focus-visible + label {
+  outline: 2px solid var(--in-focus-ring-color);
+  outline-offset: 2px;
+}
+
+.hiddenInput:disabled + label {
+  background-color: var(--in-disabled-bg);
+  opacity: var(--in-disabled-opacity);
+  cursor: not-allowed;
+  border-color: var(--in-border-color);
+  pointer-events: none;
+}
+
+.errorMessage {
+  font-size: var(--in-error-size, 0.75rem);
+  color: var(--in-error-color);
+  margin-top: 0.125rem;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--in-text-color);
+  background-color: var(--in-bg);
+  border: 1px solid var(--in-border-color);
+  border-radius: var(--in-border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploadButton:hover:not(:disabled) {
+  background-color: var(--in-primary-color);
+  border-color: var(--in-primary-color);
+  color: #ffffff;
+}
+
+.uploadButton:focus-visible {
+  outline: 2px solid var(--in-focus-ring-color);
+  outline-offset: 2px;
+}
+
+.uploadButton:disabled {
+  opacity: var(--in-disabled-opacity);
+  background-color: var(--in-disabled-bg);
+  cursor: not-allowed;
+}
+
+.uploadButtonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--in-placeholder-color, #6b7280);
+  transition: color 0.2s ease;
+}
+
+.uploadButton:hover:not(:disabled) .uploadButtonIcon {
+  color: #ffffff;
+}

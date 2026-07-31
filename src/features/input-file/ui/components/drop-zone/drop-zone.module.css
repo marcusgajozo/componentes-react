@@ -1,0 +1,82 @@
+.fileDropZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  border: 2px dashed var(--in-border-color);
+  border-radius: var(--in-border-radius);
+  background-color: var(--in-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.fileDropZone:hover {
+  border-color: var(--in-focus-ring-color);
+  background-color: color-mix(in srgb, var(--in-focus-ring-color) 5%, transparent);
+}
+
+.dropZoneActive {
+  border-color: var(--in-focus-ring-color);
+  background-color: color-mix(in srgb, var(--in-focus-ring-color) 10%, transparent);
+}
+
+.dropZoneError {
+  border-color: var(--in-error-color);
+}
+
+.dropZoneError:hover {
+  border-color: var(--in-error-color);
+  background-color: color-mix(in srgb, var(--in-error-color) 5%, transparent);
+}
+
+.iconWrapper {
+  color: var(--in-placeholder-color, #6b7280);
+  background-color: color-mix(in srgb, var(--in-border-color) 30%, transparent);
+  padding: 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.fileDropZone:hover .iconWrapper {
+  color: var(--in-focus-ring-color);
+  background-color: color-mix(in srgb, var(--in-focus-ring-color) 10%, transparent);
+}
+
+.dropZoneActive .iconWrapper {
+  color: var(--in-focus-ring-color);
+  background-color: color-mix(in srgb, var(--in-focus-ring-color) 20%, transparent);
+  animation: bounce 1s infinite;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.primaryText {
+  color: var(--in-text-color);
+  font-weight: 500;
+  font-size: var(--in-font-size);
+}
+
+.secondaryText {
+  color: var(--in-placeholder-color, #6b7280);
+  font-size: 0.875rem;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
