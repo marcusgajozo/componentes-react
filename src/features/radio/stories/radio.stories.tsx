@@ -69,3 +69,16 @@ export const WithError: Story = {
     </div>
   ),
 };
+
+export const ReadOnly: Story = {
+  args: {
+    label: "Tema Escolhido",
+    value: "dark",
+    readOnly: true,
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0", maxWidth: "280px" }}>
+      <Radio {...args} />
+    </div>
+  ),
+};

@@ -25,6 +25,7 @@ export interface RadioProps {
   id?: string;
   orientation?: "vertical" | "horizontal";
   errorMessage?: string;
+  readOnly?: boolean;
 }
 
 export function Radio({
@@ -42,6 +43,7 @@ export function Radio({
   id,
   orientation = "vertical",
   errorMessage,
+  readOnly = false,
 }: RadioProps) {
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = React.useState<string>(defaultValue ?? "");
@@ -71,39 +73,48 @@ export function Radio({
         </label>
       )}
       {description && <span className={styles.description}>{description}</span>}
-      <div
-        className={
-          orientation === "horizontal" ? styles.optionsContainerHorizontal : styles.optionsContainer
-        }
-      >
-        {options.map((opt) => {
-          const isChecked = selectedValue === opt.value;
-          const isDisabled = disabled || opt.disabled;
-          return (
-            <label
-              key={opt.value}
-              className={[styles.optionLabel, isDisabled ? styles.disabled : ""]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              <input
-                type="radio"
-                name={groupName}
-                className={styles.input}
-                value={opt.value}
-                checked={isChecked}
-                disabled={isDisabled}
-                onChange={() => handleChange(opt.value)}
-              />
-              <span className={styles.customRadio}>
-                {isChecked && <span className={styles.radioDot} />}
-              </span>
-              <span className={styles.labelText}>{opt.label}</span>
-            </label>
-          );
-        })}
-      </div>
-      {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
+
+      {readOnly ? (
+        <p className={styles.viewText}>
+          {options.find((o) => o.value === selectedValue)?.label || "-"}
+        </p>
+      ) : (
+        <div
+          className={
+            orientation === "horizontal"
+              ? styles.optionsContainerHorizontal
+              : styles.optionsContainer
+          }
+        >
+          {options.map((opt) => {
+            const isChecked = selectedValue === opt.value;
+            const isDisabled = disabled || opt.disabled;
+            return (
+              <label
+                key={opt.value}
+                className={[styles.optionLabel, isDisabled ? styles.disabled : ""]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <input
+                  type="radio"
+                  name={groupName}
+                  className={styles.input}
+                  value={opt.value}
+                  checked={isChecked}
+                  disabled={isDisabled}
+                  onChange={() => handleChange(opt.value)}
+                />
+                <span className={styles.customRadio}>
+                  {isChecked && <span className={styles.radioDot} />}
+                </span>
+                <span className={styles.labelText}>{opt.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+      {errorMessage && !readOnly && <span className={styles.errorMessage}>{errorMessage}</span>}
     </div>
   );
 }
