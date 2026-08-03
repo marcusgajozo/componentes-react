@@ -6,14 +6,14 @@ import { fn } from "storybook/test";
 import { DownloadZipButton } from "../../../storybook/download-zip";
 import { InputPassword } from "../ui/index";
 
-const uiFiles = import.meta.glob("../ui/components/input-password/*", {
+const uiFiles = import.meta.glob("../ui/**/*", {
   query: "?raw",
   import: "default",
   eager: true,
 }) as Record<string, string>;
 
 const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
-  name: path.split("/").pop()!,
+  name: path.split("/ui/")[1] || path,
   content,
 }));
 

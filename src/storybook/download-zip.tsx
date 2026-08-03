@@ -35,10 +35,26 @@ function buildZip(files: CodeFile[]): Uint8Array<ArrayBuffer> {
   const centralDirs: Uint8Array[] = [];
   let offset = 0;
 
-  for (const { name, content } of files) {
+  const allEntries: { name: string; content: string; isDir: boolean }[] = [];
+  const addedDirs = new Set<string>();
+
+  for (const file of files) {
+    const parts = file.name.split("/");
+    let currentPath = "";
+    for (let i = 0; i < parts.length - 1; i++) {
+      currentPath += parts[i] + "/";
+      if (!addedDirs.has(currentPath)) {
+        addedDirs.add(currentPath);
+        allEntries.push({ name: currentPath, content: "", isDir: true });
+      }
+    }
+    allEntries.push({ name: file.name, content: file.content, isDir: false });
+  }
+
+  for (const { name, content, isDir } of allEntries) {
     const nameBytes = enc.encode(name);
-    const data = enc.encode(content);
-    const crc = crc32(data);
+    const data = isDir ? new Uint8Array(0) : enc.encode(content);
+    const crc = isDir ? 0 : crc32(data);
     const nameLen = nameBytes.length;
     const dataLen = data.length;
 
@@ -60,7 +76,7 @@ function buildZip(files: CodeFile[]): Uint8Array<ArrayBuffer> {
     const central = new Uint8Array(new ArrayBuffer(46 + nameLen));
     const cv = new DataView(central.buffer);
     cv.setUint32(0, 0x02014b50, true);
-    cv.setUint16(4, 20, true);
+    cv.setUint16(4, 0x0314, true);
     cv.setUint16(6, 20, true);
     cv.setUint16(8, 0, true);
     cv.setUint16(10, 0, true);
@@ -74,7 +90,9 @@ function buildZip(files: CodeFile[]): Uint8Array<ArrayBuffer> {
     cv.setUint16(32, 0, true);
     cv.setUint16(34, 0, true);
     cv.setUint16(36, 0, true);
-    cv.setUint32(38, 0, true);
+
+    const extAttr = isDir ? 0x41ed0010 : 0x81a40000;
+    cv.setUint32(38, extAttr, true);
     cv.setUint32(42, offset, true);
     central.set(nameBytes, 46);
 
@@ -89,8 +107,8 @@ function buildZip(files: CodeFile[]): Uint8Array<ArrayBuffer> {
   ev.setUint32(0, 0x06054b50, true);
   ev.setUint16(4, 0, true);
   ev.setUint16(6, 0, true);
-  ev.setUint16(8, files.length, true);
-  ev.setUint16(10, files.length, true);
+  ev.setUint16(8, allEntries.length, true);
+  ev.setUint16(10, allEntries.length, true);
   ev.setUint32(12, cdSize, true);
   ev.setUint32(16, offset, true);
   ev.setUint16(20, 0, true);
@@ -106,9 +124,35 @@ function buildZip(files: CodeFile[]): Uint8Array<ArrayBuffer> {
   return result;
 }
 
+import { useState } from "react";
+
+import { Button } from "../features/button/ui";
+import { Input } from "../features/input/ui";
+import { Modal } from "../features/modal/ui";
+
 export function DownloadZipButton({ files, zipName }: Props) {
-  function download() {
-    const zip = buildZip(files);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [prefix, setPrefix] = useState("");
+
+  const getDefaultPrefix = () => {
+    const themeFile = files.find((f) => f.name === "theme.css");
+    if (!themeFile) return null;
+    const match = themeFile.content.match(/--([a-zA-Z0-9]+)-/);
+    return match ? match[1] : null;
+  };
+
+  function handleDownload() {
+    let finalFiles = files;
+    const defaultPrefix = getDefaultPrefix();
+
+    if (prefix && defaultPrefix && prefix !== defaultPrefix) {
+      finalFiles = files.map((file) => ({
+        ...file,
+        content: file.content.replace(new RegExp(`--${defaultPrefix}-`, "g"), `--${prefix}-`),
+      }));
+    }
+
+    const zip = buildZip(finalFiles);
     const blob = new Blob([zip], { type: "application/zip" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -116,43 +160,82 @@ export function DownloadZipButton({ files, zipName }: Props) {
     a.download = `${zipName}.zip`;
     a.click();
     URL.revokeObjectURL(url);
+    setIsModalOpen(false);
   }
 
   return (
-    <button
-      onClick={download}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "8px",
-        padding: "8px 16px",
-        backgroundColor: "#0ea5e9",
-        color: "white",
-        border: "none",
-        borderRadius: "6px",
-        fontWeight: "bold",
-        cursor: "pointer",
-        fontFamily: "inherit",
-        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-        marginTop: "16px",
-      }}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <>
+      <div
+        style={{
+          position: "absolute",
+          top: "12px",
+          left: "0",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          zIndex: 10,
+        }}
       >
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-        <polyline points="7 10 12 15 17 10"></polyline>
-        <line x1="12" y1="15" x2="12" y2="3"></line>
-      </svg>
-      Baixar Código-Fonte (ZIP)
-    </button>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            background: "none",
+            border: "none",
+            color: "#ca3217",
+            fontSize: "0.875rem",
+            fontWeight: 600,
+            cursor: "pointer",
+            padding: "8px",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Baixar Código-Fonte
+        </button>
+      </div>
+
+      <Modal.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <Modal.Popup>
+          <Modal.Title>Baixar Componente</Modal.Title>
+          <Modal.Body>
+            <Modal.Description>
+              Você pode personalizar o prefixo das variáveis CSS para este componente. Se deixar em
+              branco, o padrão será mantido.
+            </Modal.Description>
+
+            <div style={{ marginTop: "16px" }}>
+              <Input
+                label="Prefixo da Variável CSS"
+                value={prefix}
+                onChange={(e) => setPrefix(e.target.value)}
+                placeholder={getDefaultPrefix() || "ex: meu-prefixo"}
+                icon={<span style={{ color: "#6b7280" }}>--</span>}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Buttons>
+            <Modal.ButtonClose>Cancelar</Modal.ButtonClose>
+            <Button onClick={handleDownload}>Baixar</Button>
+          </Modal.Buttons>
+        </Modal.Popup>
+      </Modal.Root>
+    </>
   );
 }

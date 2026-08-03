@@ -7,13 +7,13 @@ import { DownloadZipButton } from "../../../storybook/download-zip";
 import { Select } from "../ui/index";
 import readme from "../ui/README.md?raw";
 
-const uiFiles = import.meta.glob("../ui/*", {
+const uiFiles = import.meta.glob("../ui/**/*", {
   query: "?raw",
   import: "default",
   eager: true,
 }) as Record<string, string>;
 const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
-  name: path.split("/").pop()!,
+  name: path.split("/ui/")[1] || path,
   content,
 }));
 

@@ -12,7 +12,7 @@ const uiFiles = import.meta.glob("../ui/**/*", {
   eager: true,
 }) as Record<string, string>;
 const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
-  name: path.replace("../ui/", ""),
+  name: path.split("/ui/")[1] || path,
   content,
 }));
 
