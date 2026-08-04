@@ -164,49 +164,37 @@ export function DownloadZipButton({ files, zipName }: Props) {
   }
 
   return (
-    <>
-      <div
-        style={{
-          position: "relative",
-          marginTop: "48px",
-          marginBottom: "24px",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          zIndex: 10,
-        }}
-      >
-        <Button variant="ghost" onClick={() => setIsModalOpen(true)} leftIcon={<DownloadIcon />}>
+    <Modal.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Modal.Trigger>
+        <Button variant="ghost" leftIcon={<DownloadIcon />}>
           Baixar Código-Fonte
         </Button>
-      </div>
+      </Modal.Trigger>
+      <Modal.Popup>
+        <Modal.Title>Baixar Componente</Modal.Title>
+        <Modal.Body>
+          <Modal.Description>
+            Você pode personalizar o prefixo das variáveis CSS para este componente. Se deixar em
+            branco, o padrão será mantido.
+          </Modal.Description>
 
-      <Modal.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <Modal.Popup>
-          <Modal.Title>Baixar Componente</Modal.Title>
-          <Modal.Body>
-            <Modal.Description>
-              Você pode personalizar o prefixo das variáveis CSS para este componente. Se deixar em
-              branco, o padrão será mantido.
-            </Modal.Description>
-
-            <div style={{ marginTop: "16px" }}>
-              <Input
-                label="Prefixo da Variável CSS"
-                value={prefix}
-                onChange={(e) => setPrefix(e.target.value)}
-                placeholder={getDefaultPrefix() || "ex: meu-prefixo"}
-                icon={<span style={{ color: "#6b7280" }}>--</span>}
-              />
-            </div>
-          </Modal.Body>
-          <Modal.Buttons>
-            <Modal.ButtonClose>Cancelar</Modal.ButtonClose>
-            <Button onClick={handleDownload}>Baixar</Button>
-          </Modal.Buttons>
-        </Modal.Popup>
-      </Modal.Root>
-    </>
+          <div style={{ marginTop: "16px" }}>
+            <Input
+              label="Prefixo da Variável CSS"
+              value={prefix}
+              onChange={(e) => setPrefix(e.target.value)}
+              placeholder={getDefaultPrefix() || "ex: meu-prefixo"}
+              icon={<span style={{ color: "#6b7280" }}>--</span>}
+              showRequiredText
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Buttons>
+          <Modal.ButtonClose>Cancelar</Modal.ButtonClose>
+          <Button onClick={handleDownload}>Baixar</Button>
+        </Modal.Buttons>
+      </Modal.Popup>
+    </Modal.Root>
   );
 }
 
