@@ -7,6 +7,7 @@ import { format, isValid, parse } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import { DatePickerInput } from "../date-picker-input";
 import { DatePickerPopup } from "../date-picker-popup";
 import styles from "./date-picker.module.css";
@@ -165,7 +166,7 @@ export function DatePicker({
   };
 
   return (
-    <div className={styles.container}>
+    <div className={[resetStyles.base, styles.container].join(" ")}>
       {label && (
         <label className={styles.label} htmlFor={id}>
           {label}{" "}

@@ -3,6 +3,7 @@ import "../../theme.css";
 import { Combobox } from "@base-ui/react/combobox";
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import { MultiSelectDropdown } from "../multi-select-dropdown";
 import { MultiSelectTrigger } from "../multi-select-trigger";
 import styles from "./multi-select.module.css";
@@ -128,7 +129,7 @@ export function MultiSelect({
 
   return (
     <div
-      className={[styles.container, disabled ? styles.disabled : "", className]
+      className={[resetStyles.base, styles.container, disabled ? styles.disabled : "", className]
         .filter(Boolean)
         .join(" ")}
     >

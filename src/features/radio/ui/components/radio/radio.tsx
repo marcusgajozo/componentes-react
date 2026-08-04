@@ -2,6 +2,7 @@ import "../../theme.css";
 
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import styles from "./radio.module.css";
 
 export interface Option {
@@ -63,7 +64,10 @@ export function Radio({
   };
 
   return (
-    <div className={[styles.container, className].filter(Boolean).join(" ")} id={id}>
+    <div
+      className={[resetStyles.base, styles.container, className].filter(Boolean).join(" ")}
+      id={id}
+    >
       {label && (
         <label className={styles.label}>
           {label}{" "}

@@ -2,6 +2,7 @@ import "../../theme.css";
 
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import { DropZone } from "../drop-zone";
 import { FileList } from "../file-list";
 import { UploadIcon } from "../icons";
@@ -150,7 +151,7 @@ export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
     };
 
     return (
-      <div className={[styles.container, className].filter(Boolean).join(" ")}>
+      <div className={[resetStyles.base, styles.container, className].filter(Boolean).join(" ")}>
         {label && (
           <label className={styles.label} htmlFor={inputId}>
             {label}{" "}

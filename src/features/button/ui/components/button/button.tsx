@@ -2,6 +2,7 @@ import "../../theme.css";
 
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import styles from "./button.module.css";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,7 +16,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={[styles.button, className].filter(Boolean).join(" ")}
+        className={[resetStyles.base, styles.button, className].filter(Boolean).join(" ")}
         disabled={isLoading || disabled}
         {...props}
       >

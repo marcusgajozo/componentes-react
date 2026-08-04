@@ -3,6 +3,7 @@ import "../../theme.css";
 import * as React from "react";
 import { IMask, IMaskInput } from "react-imask";
 
+import resetStyles from "../../reset.module.css";
 import styles from "./input.module.css";
 import { MASKS, type MaskType } from "./masks";
 
@@ -56,7 +57,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className={[styles.container, className].filter(Boolean).join(" ")}>
+      <div className={[resetStyles.base, styles.container, className].filter(Boolean).join(" ")}>
         {label && (
           <label className={styles.label} htmlFor={inputId}>
             {label}{" "}

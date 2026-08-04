@@ -3,6 +3,7 @@ import "../../theme.css";
 import { Dialog } from "@base-ui/react/dialog";
 import * as React from "react";
 
+import resetStyles from "../../reset.module.css";
 import styles from "./modal.module.css";
 
 const ESCAPE_REASONS = ["escape-key", "close-watcher"];
@@ -82,7 +83,10 @@ export function Popup({
   return (
     <Dialog.Portal>
       {!hideBackdrop && <Dialog.Backdrop className={styles.backdrop} />}
-      <Dialog.Popup className={`${styles.popup} ${className || ""}`} {...props}>
+      <Dialog.Popup
+        className={[resetStyles.base, styles.popup, className].filter(Boolean).join(" ")}
+        {...props}
+      >
         {!hideCloseIcon && <CloseIcon />}
         {children}
       </Dialog.Popup>

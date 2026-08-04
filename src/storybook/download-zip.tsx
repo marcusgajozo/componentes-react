@@ -167,9 +167,9 @@ export function DownloadZipButton({ files, zipName }: Props) {
     <>
       <div
         style={{
-          position: "absolute",
-          top: "12px",
-          left: "0",
+          position: "relative",
+          marginTop: "48px",
+          marginBottom: "24px",
           width: "100%",
           display: "flex",
           justifyContent: "center",
@@ -190,6 +190,7 @@ export function DownloadZipButton({ files, zipName }: Props) {
             cursor: "pointer",
             padding: "8px",
             fontFamily: "system-ui, -apple-system, sans-serif",
+            whiteSpace: "nowrap",
           }}
         >
           <svg
