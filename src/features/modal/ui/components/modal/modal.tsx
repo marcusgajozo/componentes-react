@@ -56,8 +56,10 @@ export function Root({
 
 type ModalTriggerProps = React.ComponentPropsWithoutRef<typeof Dialog.Trigger>;
 
-export function Trigger(props: ModalTriggerProps) {
-  return <Dialog.Trigger {...props} />;
+export function Trigger({ className, ...props }: ModalTriggerProps) {
+  return (
+    <Dialog.Trigger className={[styles.trigger, className].filter(Boolean).join(" ")} {...props} />
+  );
 }
 
 type ModalPopupProps = React.ComponentPropsWithoutRef<typeof Dialog.Popup> & {
