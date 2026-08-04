@@ -2,13 +2,17 @@
   display: none;
 }
 
+.positioner {
+  z-index: var(--ms-dropdown-z-index, 9999);
+}
+
 .dropdown {
   width: var(--anchor-width);
   background: var(--ms-dropdown-bg);
   border: var(--ms-border-width) solid var(--ms-border-color);
   border-radius: var(--ms-border-radius);
   box-shadow: var(--ms-dropdown-shadow);
-  z-index: var(--ms-dropdown-z-index);
+  z-index: inherit;
   overflow: hidden;
   font-family: var(--ms-font-family);
   font-size: var(--ms-font-size);
