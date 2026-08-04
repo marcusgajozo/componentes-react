@@ -9,14 +9,35 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  variant?: "primary" | "outline" | "ghost";
 }
 
+const variantStyles = {
+  primary: styles["variant-primary"],
+  outline: styles["variant-outline"],
+  ghost: styles["variant-ghost"],
+};
+
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, isLoading, leftIcon, rightIcon, className, disabled, ...props }, ref) => {
+  (
+    {
+      children,
+      isLoading,
+      leftIcon,
+      rightIcon,
+      className,
+      disabled,
+      variant = "primary",
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
-        className={[resetStyles.base, styles.button, className].filter(Boolean).join(" ")}
+        className={[resetStyles.base, styles.button, variantStyles[variant], className]
+          .filter(Boolean)
+          .join(" ")}
         disabled={isLoading || disabled}
         {...props}
       >

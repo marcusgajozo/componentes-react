@@ -1,31 +1,70 @@
-.button {
+.button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--btn-gap);
-  padding: var(--btn-padding);
+  padding: var(--btn-padding-block) var(--btn-padding-inline) var(--btn-padding-block) var(--btn-padding-inline);
   min-height: var(--btn-min-height);
   font-family: var(--btn-font-family);
   font-size: var(--btn-font-size);
   font-weight: 500;
   border-radius: var(--btn-border-radius);
-  border: var(--btn-border-width) solid var(--btn-border-color);
-  background-color: var(--btn-primary-color);
-  color: var(--btn-text-color);
+  border: var(--btn-border-width) solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-.button:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg);
 }
 
 .button:disabled {
   opacity: var(--btn-disabled-opacity);
   cursor: not-allowed;
+}
+
+.button.variant-primary {
+  background-color: var(--btn-primary-color);
+  color: var(--btn-text-color);
+  border-color: var(--btn-border-color);
+}
+
+.button.variant-primary:hover:not(:disabled) {
+  background-color: var(--btn-hover-bg);
+}
+
+.button.variant-primary:disabled {
   background-color: var(--btn-disabled-bg);
   color: var(--btn-disabled-color);
-  border-color: #e5e7eb;
+  border-color: var(--btn-disabled-bg);
+}
+
+.button.variant-outline {
+  background-color: transparent;
+  color: var(--btn-primary-color);
+  border-color: var(--btn-primary-color);
+}
+
+.button.variant-outline:hover:not(:disabled) {
+  background-color: var(--btn-primary-color);
+  color: var(--btn-text-color);
+}
+
+.button.variant-outline:disabled {
+  color: var(--btn-disabled-color);
+  border-color: var(--btn-disabled-color);
+  background-color: transparent;
+}
+
+.button.variant-ghost {
+  background-color: transparent;
+  color: var(--btn-primary-color);
+  border-color: transparent;
+}
+
+.button.variant-ghost:hover:not(:disabled) {
+  background-color: var(--btn-ghost-hover-bg);
+}
+
+.button.variant-ghost:disabled {
+  color: var(--btn-disabled-color);
+  background-color: transparent;
 }
 
 .button:focus-visible {
