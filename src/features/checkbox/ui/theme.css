@@ -6,12 +6,12 @@
   --cb-desc-size: 0.85rem;
   --cb-error-size: 0.85rem;
   --cb-bg: #fff;
-  --cb-text-color: #111827;
-  --cb-border-color: #d1d5db;
+  --cb-text-color: var(--ui-gray-900, #111827);
+  --cb-border-color: var(--ui-gray-300, #d1d5db);
   --cb-border-radius: 0.25rem;
   --cb-border-width: 1px;
-  --cb-label-color: #374151;
-  --cb-required-color: #374151;
+  --cb-label-color: var(--ui-gray-700, #374151);
+  --cb-required-color: var(--ui-gray-700, #374151);
   --cb-focus-ring-color: var(--cb-primary-color);
   --cb-focus-ring-width: 2px;
   --cb-disabled-opacity: 0.6;

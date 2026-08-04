@@ -20,7 +20,7 @@
 
 .description {
   font-size: var(--in-desc-size, 0.75rem);
-  color: var(--in-placeholder-color, #6b7280);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
 }
 
 .inputWrapper {
@@ -37,7 +37,7 @@
 .iconWrapper {
   position: absolute;
   left: 0.5rem;
-  color: var(--in-placeholder-color, #6b7280);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +73,7 @@
 .rightIconWrapper {
   position: absolute;
   right: 0.5rem;
-  color: var(--in-placeholder-color, #6b7280);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
   display: flex;
   align-items: center;
   justify-content: center;

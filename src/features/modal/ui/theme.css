@@ -6,18 +6,18 @@
   --modal-padding: 1.5rem;
   --modal-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
   --modal-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
-  --modal-close-color: #740000;
-  --modal-close-hover-bg: color-mix(in srgb, var(--modal-close-color) 10%, transparent);
-  --modal-close-hover-color: color-mix(in srgb, var(--modal-close-color) 80%, black);
+  --modal-close-hover-bg: color-mix(in srgb, var(--modal-primary) 10%, transparent);
+  --modal-close-hover-color: color-mix(in srgb, var(--modal-primary) 80%, black);
   --modal-btn-action-bg: var(--modal-primary);
   --modal-btn-action-color: #fff;
   --modal-btn-action-hover-bg: color-mix(in srgb, var(--modal-primary) 85%, black);
-  --modal-btn-close-bg: color-mix(in srgb, var(--modal-close-color) 15%, transparent);
-  --modal-btn-close-color: var(--modal-close-color);
-  --modal-btn-close-hover-bg: color-mix(in srgb, var(--modal-close-color) 25%, transparent);
+  --modal-btn-close-bg: transparent;
+  --modal-btn-close-color: var(--modal-primary);
+  --modal-btn-close-hover-bg: transparent;
+  --modal-btn-font-size: 0.875rem;
   --modal-title-size: 1.5rem;
   --modal-title-weight: 500;
   --modal-title-color: var(--modal-primary);
   --modal-desc-size: 1rem;
-  --modal-desc-color: color-mix(in srgb, var(--modal-primary) 15%, #4b5563);
+  --modal-desc-color: color-mix(in srgb, var(--modal-primary) 15%, var(--ui-gray-600, #4b5563));
 }

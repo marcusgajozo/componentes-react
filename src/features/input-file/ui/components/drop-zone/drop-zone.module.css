@@ -33,7 +33,7 @@
 }
 
 .iconWrapper {
-  color: var(--in-placeholder-color, #6b7280);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
   background-color: color-mix(in srgb, var(--in-border-color) 30%, transparent);
   padding: 0.75rem;
   border-radius: 50%;
@@ -67,7 +67,7 @@
 }
 
 .secondaryText {
-  color: var(--in-placeholder-color, #6b7280);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
   font-size: 0.875rem;
 }
 

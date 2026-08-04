@@ -6,7 +6,7 @@
   animation: fadeIn 0.2s ease-out;
 }
 
-.popup {
+.popup.popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -52,7 +52,7 @@
 .description {
   margin: 0;
   font-size: var(--modal-desc-size, 1rem);
-  color: var(--modal-desc-color, #4b5563);
+  color: var(--modal-desc-color, var(--ui-gray-600, #4b5563));
   margin-bottom: 1.5rem;
 }
 
@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--modal-close-color);
+  color: var(--modal-primary);
   border-radius: 4px;
   transition:
     background-color 0.15s ease,
@@ -94,6 +94,7 @@
   border: none;
   cursor: pointer;
   font-weight: 500;
+  font-size: var(--modal-btn-font-size, 0.875rem);
   font-family: inherit;
   transition: all 0.2s ease;
 }

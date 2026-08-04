@@ -1,12 +1,12 @@
 :root {
   --sl-primary-color: var(--ui-primary, #ca3217);
-  --sl-text-color: #111827;
+  --sl-text-color: var(--ui-gray-900, #111827);
   --sl-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --sl-font-size: 0.875rem;
   --sl-label-size: var(--sl-font-size);
   --sl-desc-size: 0.75rem;
   --sl-error-size: 0.75rem;
-  --sl-border-color: #d1d5db;
+  --sl-border-color: var(--ui-gray-300, #d1d5db);
   --sl-border-radius: 0.375rem;
   --sl-border-width: 1px;
   --sl-focus-ring-color: var(--sl-primary-color);
@@ -17,19 +17,19 @@
   --sl-dropdown-bg: #fff;
   --sl-dropdown-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
   --sl-dropdown-max-height: 16rem;
-  --sl-dropdown-z-index: 50;
+  --sl-dropdown-z-index: 9999;
   --sl-option-padding: 0.5rem 0.75rem;
-  --sl-option-hover-bg: #f3f4f6;
+  --sl-option-hover-bg: var(--ui-gray-100, #f3f4f6);
   --sl-option-selected-bg: var(--sl-primary-color);
   --sl-option-selected-color: #fff;
-  --sl-option-focused-bg: #f3f4f6;
-  --sl-option-disabled-color: #9ca3af;
+  --sl-option-focused-bg: var(--ui-gray-100, #f3f4f6);
+  --sl-option-disabled-color: var(--ui-gray-400, #9ca3af);
   --sl-option-check-width: 1.25rem;
   --sl-search-padding: 0.5rem 0.75rem;
-  --sl-placeholder-color: #6b7280;
-  --sl-disabled-bg: #f9fafb;
+  --sl-placeholder-color: var(--ui-gray-500, #6b7280);
+  --sl-disabled-bg: var(--ui-gray-50, #f9fafb);
   --sl-disabled-opacity: 0.6;
-  --sl-chevron-color: #9ca3af;
-  --sl-label-color: #374151;
-  --sl-required-color: #374151;
+  --sl-chevron-color: var(--ui-gray-400, #9ca3af);
+  --sl-label-color: var(--ui-gray-700, #374151);
+  --sl-required-color: var(--ui-gray-700, #374151);
 }

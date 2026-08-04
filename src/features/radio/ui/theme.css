@@ -6,12 +6,12 @@
   --rd-desc-size: 0.75rem;
   --rd-error-size: 0.75rem;
   --rd-bg: #fff;
-  --rd-text-color: #111827;
-  --rd-border-color: #d1d5db;
+  --rd-text-color: var(--ui-gray-900, #111827);
+  --rd-border-color: var(--ui-gray-300, #d1d5db);
   --rd-border-radius: 50%;
   --rd-border-width: 1px;
-  --rd-label-color: #374151;
-  --rd-required-color: #374151;
+  --rd-label-color: var(--ui-gray-700, #374151);
+  --rd-required-color: var(--ui-gray-700, #374151);
   --rd-focus-ring-color: var(--rd-primary-color);
   --rd-focus-ring-width: 2px;
   --rd-disabled-opacity: 0.6;

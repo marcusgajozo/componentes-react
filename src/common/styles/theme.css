@@ -1,4 +1,15 @@
 :root {
   --ui-primary: #0b5e1d;
   --ui-font: system-ui, -apple-system, sans-serif;
+  --ui-gray-50: #f9fafb;
+  --ui-gray-100: #f3f4f6;
+  --ui-gray-200: #e5e7eb;
+  --ui-gray-300: #d1d5db;
+  --ui-gray-400: #9ca3af;
+  --ui-gray-500: #6b7280;
+  --ui-gray-600: #4b5563;
+  --ui-gray-700: #374151;
+  --ui-gray-800: #1f2937;
+  --ui-gray-900: #111827;
+  --ui-gray-950: #030712;
 }

@@ -1,12 +1,12 @@
 :root {
   --ms-primary-color: var(--ui-primary, #0d6929);
-  --ms-text-color: #111827;
+  --ms-text-color: var(--ui-gray-900, #111827);
   --ms-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --ms-font-size: 0.875rem;
   --ms-label-size: var(--ms-font-size);
   --ms-desc-size: 0.75rem;
   --ms-error-size: 0.75rem;
-  --ms-border-color: #d1d5db;
+  --ms-border-color: var(--ui-gray-300, #d1d5db);
   --ms-border-radius: 0.375rem;
   --ms-border-width: 1px;
   --ms-focus-ring-color: var(--ms-primary-color);
@@ -17,18 +17,18 @@
   --ms-dropdown-bg: #fff;
   --ms-dropdown-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
   --ms-dropdown-max-height: 16rem;
-  --ms-dropdown-z-index: 50;
+  --ms-dropdown-z-index: 9999;
   --ms-option-padding: 0.5rem 0.75rem;
-  --ms-option-hover-bg: #f3f4f6;
+  --ms-option-hover-bg: var(--ui-gray-100, #f3f4f6);
   --ms-option-selected-bg: color-mix(in srgb, var(--ms-primary-color) 10%, transparent);
-  --ms-option-selected-color: #111827;
-  --ms-option-disabled-color: #9ca3af;
-  --ms-placeholder-color: #6b7280;
-  --ms-disabled-bg: #f9fafb;
+  --ms-option-selected-color: var(--ui-gray-900, #111827);
+  --ms-option-disabled-color: var(--ui-gray-400, #9ca3af);
+  --ms-placeholder-color: var(--ui-gray-500, #6b7280);
+  --ms-disabled-bg: var(--ui-gray-50, #f9fafb);
   --ms-disabled-opacity: 0.6;
-  --ms-clear-color: #9ca3af;
-  --ms-chevron-color: #9ca3af;
+  --ms-clear-color: var(--ui-gray-400, #9ca3af);
+  --ms-chevron-color: var(--ui-gray-400, #9ca3af);
   --ms-checkbox-check-color: #fff;
-  --ms-label-color: #374151;
-  --ms-required-color: #374151;
+  --ms-label-color: var(--ui-gray-700, #374151);
+  --ms-required-color: var(--ui-gray-700, #374151);
 }

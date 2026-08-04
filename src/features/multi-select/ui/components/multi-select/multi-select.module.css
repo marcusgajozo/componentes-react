@@ -24,7 +24,7 @@
 
 .description {
   font-size: var(--ms-desc-size, 0.75rem);
-  color: var(--ms-placeholder-color, #6b7280);
+  color: var(--ms-placeholder-color, var(--ui-gray-500, #6b7280));
 }
 
 .disabled {
@@ -40,7 +40,7 @@
 }
 
 .viewText {
-  color: var(--ms-text-color, #111827);
+  color: var(--ms-text-color, var(--ui-gray-900, #111827));
   font-size: var(--ms-font-size, 0.875rem);
   margin: 0;
   padding: 0.5rem 0;

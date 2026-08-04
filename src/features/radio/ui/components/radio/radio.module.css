@@ -24,7 +24,7 @@
 
 .description {
   font-size: var(--rd-desc-size, 0.75rem);
-  color: #6b7280;
+  color: var(--ui-gray-500, #6b7280);
   margin-top: -0.25rem;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .viewText {
-  color: var(--rd-text-color, #111827);
+  color: var(--rd-text-color, var(--ui-gray-900, #111827));
   font-size: var(--rd-font-size, 0.875rem);
   margin: 0;
   padding: 0.5rem 0;

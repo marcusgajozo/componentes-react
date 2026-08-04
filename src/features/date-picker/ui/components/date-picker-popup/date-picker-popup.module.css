@@ -1,5 +1,5 @@
 .popup {
-  z-index: 50;
+  z-index: 9999;
   font-family: var(--dp-font-family);
   background-color: var(--dp-bg-primary);
   border-radius: 0.75rem;
