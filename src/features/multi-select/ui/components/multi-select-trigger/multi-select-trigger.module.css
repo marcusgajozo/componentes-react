@@ -21,6 +21,8 @@
 .triggerWrapper:focus-within {
   border-color: var(--ms-focus-ring-color);
   box-shadow: 0 0 0 var(--ms-focus-ring-width) var(--ms-focus-ring-color);
+  position: relative;
+  z-index: 1;
 }
 
 .error {

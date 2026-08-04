@@ -1,6 +1,6 @@
 :root {
-  --rd-primary-color: #ca3217;
-  --rd-font-family: system-ui, -apple-system, sans-serif;
+  --rd-primary-color: var(--ui-primary, #ca3217);
+  --rd-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --rd-font-size: 0.875rem;
   --rd-label-size: var(--rd-font-size);
   --rd-desc-size: 0.75rem;

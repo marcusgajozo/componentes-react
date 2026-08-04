@@ -5,7 +5,7 @@
   --modal-radius: 8px;
   --modal-padding: 1.5rem;
   --modal-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
-  --modal-font-family: system-ui, -apple-system, sans-serif;
+  --modal-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --modal-close-color: #740000;
   --modal-close-hover-bg: color-mix(in srgb, var(--modal-close-color) 10%, transparent);
   --modal-close-hover-color: color-mix(in srgb, var(--modal-close-color) 80%, black);

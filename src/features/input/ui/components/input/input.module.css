@@ -1,9 +1,11 @@
-.container {
+.container.container {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   font-family: var(--in-font-family);
   width: 100%;
+  padding: 2px;
+  box-sizing: border-box;
 }
 
 .label {
@@ -26,6 +28,10 @@
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+.inputWrapper:focus-within {
+  z-index: 1;
 }
 
 .iconWrapper {

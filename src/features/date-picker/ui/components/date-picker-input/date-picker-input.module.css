@@ -17,6 +17,8 @@
 .inputWrapper:focus-within {
   border-color: var(--dp-primary-color);
   box-shadow: 0 0 0 2px var(--dp-primary-light);
+  position: relative;
+  z-index: 1;
 }
 
 .inputWrapper.disabled {

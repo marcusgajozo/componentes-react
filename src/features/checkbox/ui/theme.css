@@ -1,6 +1,6 @@
 :root {
-  --cb-primary-color: #ca3217;
-  --cb-font-family: system-ui, -apple-system, sans-serif;
+  --cb-primary-color: var(--ui-primary, #ca3217);
+  --cb-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --cb-font-size: 0.875rem;
   --cb-label-size: var(--cb-font-size);
   --cb-desc-size: 0.85rem;

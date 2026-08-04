@@ -1,7 +1,7 @@
 :root {
-  --sl-primary-color: #ca3217;
+  --sl-primary-color: var(--ui-primary, #ca3217);
   --sl-text-color: #111827;
-  --sl-font-family: system-ui, -apple-system, sans-serif;
+  --sl-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --sl-font-size: 0.875rem;
   --sl-label-size: var(--sl-font-size);
   --sl-desc-size: 0.75rem;

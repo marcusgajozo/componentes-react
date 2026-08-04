@@ -1,5 +1,5 @@
 :root {
-  --dt-font-family: system-ui, -apple-system, sans-serif;
+  --dt-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --dt-primary: #033d64;
   --dt-row-thickness: 10px;
   --dt-neutral: #64748b;

@@ -1,7 +1,7 @@
 :root {
-  --in-primary-color: #146946;
+  --in-primary-color: var(--ui-primary, #146946);
   --in-text-color: #111827;
-  --in-font-family: system-ui, -apple-system, sans-serif;
+  --in-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --in-font-size: 0.875rem;
   --in-label-size: var(--in-font-size);
   --in-desc-size: 0.85rem;

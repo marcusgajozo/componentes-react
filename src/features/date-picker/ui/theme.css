@@ -1,7 +1,7 @@
 :root {
-  --dp-primary-color: #ca3217;
+  --dp-primary-color: var(--ui-primary, #ca3217);
   --dp-primary-light: color-mix(in srgb, var(--dp-primary-color) 20%, transparent);
-  --dp-font-family: system-ui, -apple-system, sans-serif;
+  --dp-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
   --dp-font-size: 0.875rem;
   --dp-text-primary: #111827;
   --dp-text-secondary: #6b7280;

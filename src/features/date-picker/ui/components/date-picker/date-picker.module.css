@@ -1,9 +1,11 @@
-.container {
+.container.container {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
   font-family: var(--dp-font-family);
+  padding: 2px;
+  box-sizing: border-box;
 }
 
 .label {

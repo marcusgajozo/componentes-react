@@ -1,10 +1,11 @@
-.container {
+.container.container {
   position: relative;
   display: block;
   width: 100%;
   font-family: var(--ms-font-family);
   font-size: var(--ms-font-size);
   box-sizing: border-box;
+  padding: 2px;
 }
 
 .label {
