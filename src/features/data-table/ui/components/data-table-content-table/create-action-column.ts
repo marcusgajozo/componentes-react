@@ -9,7 +9,7 @@ export function createActionColumn<TData>(
 ): ColumnDef<TData, unknown> {
   return {
     id: "actions",
-    size: 40,
+    size: 88,
     header: "Ações",
     cell: ({ row }) => createElement(DataTableActionCell<TData>, { actions, row: row.original }),
   };
