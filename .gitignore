@@ -19,6 +19,7 @@
 !.npmrc
 !.nvmrc
 !.prettierrc
+!.stylelintrc.json
 !commitlint.config.js
 !Dockerfile
 !eslint.config.js

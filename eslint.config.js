@@ -10,6 +10,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unusedImports from "eslint-plugin-unused-imports";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import reactYouMightNotNeedAnEffect from "eslint-plugin-react-you-might-not-need-an-effect";
+import cssModules from "eslint-plugin-css-modules";
 
 const localPlugin = {
   rules: {
@@ -49,6 +50,7 @@ export default defineConfig([
     plugins: {
       "simple-import-sort": simpleImportSort,
       "unused-imports": unusedImports,
+      "css-modules": cssModules,
       local: localPlugin,
     },
     extends: [
@@ -72,6 +74,8 @@ export default defineConfig([
       "no-console": "error",
       "local/no-comments": "warn",
       "react-refresh/only-export-components": "off",
+      "css-modules/no-unused-class": "warn",
+      "css-modules/no-undef-class": "error",
     },
   },
   ...storybook.configs["flat/recommended"],
