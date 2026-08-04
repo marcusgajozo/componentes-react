@@ -2,24 +2,20 @@
   --dt-font-family: system-ui, -apple-system, sans-serif;
   --dt-primary: #033d64;
   --dt-row-thickness: 10px;
-
   --dt-neutral: #64748b;
-  --dt-bg: #ffffff;
-
-  --dt-header-bg: color-mix(in srgb, var(--dt-neutral) 8%, #ffffff);
-  --dt-row-hover: color-mix(in srgb, var(--dt-neutral) 4%, #ffffff);
-  --dt-border: color-mix(in srgb, var(--dt-neutral) 25%, #ffffff);
-  --dt-checkbox-border: color-mix(in srgb, var(--dt-neutral) 40%, #ffffff);
-  --dt-disabled: color-mix(in srgb, var(--dt-neutral) 40%, #ffffff);
+  --dt-bg: #fff;
+  --dt-header-bg: color-mix(in srgb, var(--dt-neutral) 8%, #fff);
+  --dt-row-hover: color-mix(in srgb, var(--dt-neutral) 4%, #fff);
+  --dt-border: color-mix(in srgb, var(--dt-neutral) 25%, #fff);
+  --dt-checkbox-border: color-mix(in srgb, var(--dt-neutral) 40%, #fff);
+  --dt-disabled: color-mix(in srgb, var(--dt-neutral) 40%, #fff);
   --dt-icon: var(--dt-neutral);
-  --dt-text-color: #000000;
-
-  --dt-row-selected: color-mix(in srgb, var(--dt-primary) 8%, #ffffff);
+  --dt-text-color: #000;
+  --dt-row-selected: color-mix(in srgb, var(--dt-primary) 8%, #fff);
   --dt-accent: var(--dt-primary);
-  --dt-accent-hover: color-mix(in srgb, var(--dt-primary) 85%, #000000);
-  --dt-accent-foreground: #ffffff;
-
-  --dt-shadow-alpha-1: rgba(0, 0, 0, 0.1);
-  --dt-shadow-alpha-2: rgba(0, 0, 0, 0.06);
-  --dt-shadow-alpha-3: rgba(0, 0, 0, 0.05);
+  --dt-accent-hover: color-mix(in srgb, var(--dt-primary) 85%, #000);
+  --dt-accent-foreground: #fff;
+  --dt-shadow-alpha-1: rgb(0 0 0 / 10%);
+  --dt-shadow-alpha-2: rgb(0 0 0 / 6%);
+  --dt-shadow-alpha-3: rgb(0 0 0 / 5%);
 }

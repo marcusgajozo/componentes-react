@@ -1,31 +1,18 @@
 :root {
-  /* Cor Principal */
   --cb-primary-color: #ca3217;
-
-  /* Tipografia */
   --cb-font-family: system-ui, -apple-system, sans-serif;
   --cb-font-size: 0.875rem;
   --cb-label-size: var(--cb-font-size);
   --cb-desc-size: 0.85rem;
   --cb-error-size: 0.85rem;
-
-  /* Cores Base */
-  --cb-bg: #ffffff;
+  --cb-bg: #fff;
   --cb-text-color: #111827;
-
-  /* Bordas */
   --cb-border-color: #d1d5db;
   --cb-border-radius: 0.25rem;
   --cb-border-width: 1px;
-
-  /* Labels */
   --cb-label-color: #374151;
   --cb-required-color: #374151;
-
-  /* Focus */
   --cb-focus-ring-color: var(--cb-primary-color);
   --cb-focus-ring-width: 2px;
-
-  /* Disabled */
   --cb-disabled-opacity: 0.6;
 }

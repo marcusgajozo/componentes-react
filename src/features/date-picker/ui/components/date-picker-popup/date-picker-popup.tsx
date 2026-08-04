@@ -66,7 +66,7 @@ export function DatePickerPopup({
             <div className={styles.timeContainer}>
               {mode === "single" ? (
                 <>
-                  <span className={styles.timeLabel}>Horário</span>
+                  <span className={styles.timeContainer}>Horário</span>
                   <input
                     type="time"
                     className={styles.timeInput}

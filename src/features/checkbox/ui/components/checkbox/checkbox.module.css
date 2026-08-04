@@ -34,8 +34,7 @@
 
 .optionsContainerHorizontal {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 0.5rem 1rem;
 }
 
@@ -82,7 +81,7 @@
 .input:checked + .customCheckbox {
   background-color: var(--cb-primary-color);
   border-color: var(--cb-primary-color);
-  color: #ffffff;
+  color: #fff;
 }
 
 .checkIcon {
@@ -92,7 +91,7 @@
 
 .errorMessage {
   font-size: var(--cb-error-size, 0.75rem);
-  color: #ef4444; /* Standard red error color, can be updated with variable */
+  color: #ef4444;
   margin-top: 0.125rem;
 }
 

@@ -5,8 +5,8 @@
   border-radius: 0.75rem;
   border: 1px solid var(--dp-border-color);
   box-shadow:
-    0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    0 10px 25px -5px rgb(0 0 0 / 10%),
+    0 8px 10px -6px rgb(0 0 0 / 10%);
   padding: 1rem;
   margin-top: 0.25rem;
   animation: slideIn 0.2s ease-out;
@@ -49,18 +49,19 @@
     opacity: 0;
     transform: translateY(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* DayPicker Overrides for a more premium look */
 :global(.rdp-root) {
   --rdp-accent-color: var(--dp-primary-color);
   --rdp-accent-background-color: var(--dp-primary-light);
   --rdp-day-height: 2.25rem;
   --rdp-day-width: 2.25rem;
+
   margin: 0;
   font-family: inherit;
 }
@@ -100,7 +101,7 @@
   background-color: var(--dp-bg-view);
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .popup {
     max-width: 95vw;
     padding: 0.75rem;
@@ -110,6 +111,7 @@
   :global(.rdp-root) {
     --rdp-day-height: 2.125rem;
     --rdp-day-width: 2.125rem;
+
     font-size: var(--dp-font-size);
   }
 

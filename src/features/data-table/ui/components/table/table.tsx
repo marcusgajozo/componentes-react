@@ -16,11 +16,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
-    <thead
-      data-slot="table-header"
-      className={[styles.tableHeader, className].filter(Boolean).join(" ")}
-      {...props}
-    />
+    <thead data-slot="table-header" className={[className].filter(Boolean).join(" ")} {...props} />
   );
 }
 

@@ -77,7 +77,7 @@
 .uploadButton:hover:not(:disabled) {
   background-color: var(--in-primary-color);
   border-color: var(--in-primary-color);
-  color: #ffffff;
+  color: #fff;
 }
 
 .uploadButton:focus-visible {
@@ -99,7 +99,7 @@
 }
 
 .uploadButton:hover:not(:disabled) .uploadButtonIcon {
-  color: #ffffff;
+  color: #fff;
 }
 
 .viewText {

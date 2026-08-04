@@ -60,6 +60,7 @@
   cursor: pointer;
   color: var(--dp-text-tertiary);
 }
+
 .triggerButton:disabled {
   cursor: not-allowed;
 }

@@ -1,24 +1,16 @@
 :root {
-  /* Cor Principal */
   --dp-primary-color: #ca3217;
   --dp-primary-light: color-mix(in srgb, var(--dp-primary-color) 20%, transparent);
-
-  /* Tipografia */
   --dp-font-family: system-ui, -apple-system, sans-serif;
   --dp-font-size: 0.875rem;
-
-  /* Cores Base - Escala de cinza */
-  --dp-text-primary: #111827; /* Gray 900 */
-  --dp-text-secondary: #6b7280; /* Gray 500 */
-  --dp-text-tertiary: #9ca3af; /* Gray 400 */
-
-  --dp-border-color: #d1d5db; /* Gray 300 */
+  --dp-text-primary: #111827;
+  --dp-text-secondary: #6b7280;
+  --dp-text-tertiary: #9ca3af;
+  --dp-border-color: #d1d5db;
   --dp-border-radius: 0.5rem;
-
-  --dp-bg-primary: #ffffff;
-  --dp-bg-disabled: #f3f4f6; /* Gray 100 */
-  --dp-bg-view: #f9fafb; /* Gray 50 */
-
+  --dp-bg-primary: #fff;
+  --dp-bg-disabled: #f3f4f6;
+  --dp-bg-view: #f9fafb;
   --dp-danger-color: #ef4444;
   --dp-danger-light: color-mix(in srgb, var(--dp-danger-color) 20%, transparent);
 }

@@ -43,6 +43,7 @@
 .tableHead:first-child {
   padding-left: 24px;
 }
+
 .tableHead:last-child {
   padding-right: 24px;
 }
@@ -59,6 +60,7 @@
 .tableCell:first-child {
   padding-left: 24px;
 }
+
 .tableCell:last-child {
   padding-right: 24px;
 }

@@ -71,7 +71,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Unlike iconWrapper, this one usually has a button inside, so we keep pointer-events */
 }
 
 .rightIconWrapper > svg {

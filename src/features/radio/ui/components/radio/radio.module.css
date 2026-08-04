@@ -34,8 +34,7 @@
 
 .optionsContainerHorizontal {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 0.5rem 1rem;
 }
 

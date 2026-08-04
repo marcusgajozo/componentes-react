@@ -1,7 +1,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background-color: var(--modal-backdrop-bg, rgba(0, 0, 0, 0.5));
+  background-color: var(--modal-backdrop-bg, rgb(0 0 0 / 50%));
   z-index: 50;
   animation: fadeIn 0.2s ease-out;
 }
@@ -11,13 +11,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--modal-bg, #ffffff);
+  background-color: var(--modal-bg, #fff);
   font-family: var(--modal-font-family, inherit);
   border-radius: var(--modal-radius, 8px);
   box-shadow: var(
     --modal-shadow,
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05)
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -2px rgb(0 0 0 / 5%)
   );
   box-sizing: border-box;
   padding: var(--modal-padding, 1.5rem);
@@ -27,7 +27,7 @@
   max-height: calc(100vh - 2rem);
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Oculta o scroll principal para que o Body faça o scroll */
+  overflow: hidden;
   z-index: 51;
   outline: none;
   animation: scaleIn 0.2s ease-out;
@@ -36,7 +36,6 @@
 .body {
   flex: 1;
   overflow-y: auto;
-  /* Scroll margin e customização opcional */
   padding-right: 0.5rem;
   margin-right: -0.5rem;
 }
@@ -125,6 +124,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -135,6 +135,7 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);

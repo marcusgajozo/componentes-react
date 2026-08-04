@@ -115,7 +115,7 @@
   line-height: 1.4;
   flex-shrink: 1;
   min-width: 0;
-  white-space: pre; /* Preserve space after comma */
+  white-space: pre;
 }
 
 .chipLabel {
@@ -167,7 +167,7 @@
   transform: rotate(180deg);
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .clearAll,
   .chevronButton {
     min-width: 44px;

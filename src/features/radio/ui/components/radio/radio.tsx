@@ -112,7 +112,7 @@ export function Radio({
                 <span className={styles.customRadio}>
                   {isChecked && <span className={styles.radioDot} />}
                 </span>
-                <span className={styles.labelText}>{opt.label}</span>
+                <span>{opt.label}</span>
               </label>
             );
           })}

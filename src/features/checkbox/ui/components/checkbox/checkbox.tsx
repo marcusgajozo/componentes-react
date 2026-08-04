@@ -116,7 +116,7 @@ export function Checkbox({
                   onChange={(e) => handleChange(opt.value, e.target.checked)}
                 />
                 <span className={styles.customCheckbox}>{isChecked && <CheckIcon />}</span>
-                <span className={styles.labelText}>{opt.label}</span>
+                <span>{opt.label}</span>
               </label>
             );
           })}
