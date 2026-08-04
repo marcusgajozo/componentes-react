@@ -1,5 +1,5 @@
 :root {
-  --modal-primary: #0e7913;
+  --modal-primary: var(--ui-primary, #0e7913);
   --modal-backdrop-bg: rgb(0 0 0 / 50%);
   --modal-bg: #fff;
   --modal-radius: 20px;
