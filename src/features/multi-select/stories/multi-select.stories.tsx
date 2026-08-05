@@ -1,5 +1,6 @@
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
@@ -32,9 +33,14 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
@@ -43,6 +49,79 @@ const meta = {
     placeholder: "Selecione frameworks...",
     onChange: fn(),
     icon: <FontAwesomeIcon icon={faTags} />,
+  },
+  argTypes: {
+    options: {
+      description: "Lista de opções disponíveis para seleção.",
+      table: { type: { summary: "Option[]" } },
+    },
+    value: {
+      description: "Valor controlado (array de strings selecionadas).",
+      table: { type: { summary: "string[]" } },
+    },
+    defaultValue: {
+      description: "Valor inicial quando não-controlado.",
+      table: { type: { summary: "string[]" } },
+    },
+    onChange: {
+      description: "Callback disparado quando a seleção muda.",
+      table: { type: { summary: "(value: string[]) => void" } },
+    },
+    placeholder: {
+      description: "Texto placeholder do trigger.",
+      table: { type: { summary: "string" } },
+      defaultValue: { summary: '"Select..."' },
+    },
+    disabled: {
+      description: "Desabilita o componente.",
+      table: { type: { summary: "boolean" } },
+    },
+    id: {
+      description: "ID personalizado para o contêiner.",
+      table: { type: { summary: "string" } },
+    },
+    className: {
+      description: "Classe CSS adicional.",
+      table: { type: { summary: "string" } },
+    },
+    label: {
+      description: "Texto do rótulo exibido acima do componente.",
+      table: { type: { summary: "string" } },
+    },
+    description: {
+      description: "Texto descritivo auxiliar.",
+      table: { type: { summary: "string" } },
+    },
+    required: {
+      description: "Indica que o campo é obrigatório.",
+      table: { type: { summary: "boolean" } },
+    },
+    showRequiredText: {
+      description: "Exibe o texto de obrigatório visualmente.",
+      table: { type: { summary: "boolean" } },
+    },
+    noOptionsMessage: {
+      description: "Mensagem exibida quando nenhuma opção está disponível.",
+      table: { type: { summary: "string" } },
+      defaultValue: { summary: '"No options found"' },
+    },
+    maxSelected: {
+      description: "Número máximo de itens selecionáveis.",
+      table: { type: { summary: "number" } },
+    },
+    icon: {
+      description: "Ícone renderizado no trigger.",
+      table: { type: { summary: "React.ReactNode" } },
+      control: false,
+    },
+    errorMessage: {
+      description: "Mensagem de erro exibida abaixo do componente.",
+      table: { type: { summary: "string" } },
+    },
+    readOnly: {
+      description: "Modo somente leitura (impede alterações).",
+      table: { type: { summary: "boolean" } },
+    },
   },
 } satisfies Meta<typeof MultiSelect>;
 
@@ -59,40 +138,6 @@ export const Default: Story = {
         </div>
       </div>
       <DownloadZipButton files={zipFiles} zipName="multi-select" />
-    </div>
-  ),
-};
-
-export const WithError: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    errorMessage: "Selecione pelo menos um framework.",
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "320px" }}>
-          <MultiSelect {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const ReadOnly: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Frameworks Selecionados",
-    value: ["react", "vue"],
-    readOnly: true,
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "320px" }}>
-          <MultiSelect {...args} />
-        </div>
-      </div>
     </div>
   ),
 };

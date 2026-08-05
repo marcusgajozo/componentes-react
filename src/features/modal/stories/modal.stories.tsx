@@ -1,7 +1,8 @@
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta } from "@storybook/react-vite";
 
 import { DownloadZipButton } from "../../../storybook/download-zip";
-import { Modal, useModal } from "../ui/index";
+import { Modal } from "../ui/index";
 import readme from "../ui/README.md?raw";
 
 const uiFiles = import.meta.glob("../ui/**/*", {
@@ -20,12 +21,41 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
+  argTypes: {
+    open: {
+      description: "Controla a abertura do modal (modo controlado).",
+      table: { type: { summary: "boolean" } },
+    },
+    onOpenChange: {
+      description: "Callback disparado quando o estado de abertura muda.",
+      table: { type: { summary: "(open: boolean, details: DialogDetails) => void" } },
+    },
+    defaultOpen: {
+      description: "Estado de abertura inicial (modo não-controlado).",
+      table: { type: { summary: "boolean" } },
+    },
+    disableOutsideClick: {
+      description: "Se true, impede o fechamento ao clicar no backdrop.",
+      table: { type: { summary: "boolean" } },
+      defaultValue: { summary: "true" },
+    },
+    children: {
+      description: "Conteúdo filho do modal (Trigger, Popup, etc.).",
+      table: { type: { summary: "React.ReactNode" } },
+      control: false,
+    },
+  },
 } satisfies Meta<typeof Modal.Root>;
 
 export default meta;
@@ -64,136 +94,4 @@ export const Default = {
       <DownloadZipButton files={zipFiles} zipName="modal" />
     </div>
   ),
-};
-
-export const AllowOutsideClick = {
-  render: () => (
-    <Modal.Root disableOutsideClick={false}>
-      <Modal.Trigger
-        style={{
-          padding: "8px 16px",
-          cursor: "pointer",
-          borderRadius: "4px",
-          backgroundColor: "#10b981",
-          color: "white",
-          border: "none",
-        }}
-      >
-        Abrir Modal (Clique fora para fechar)
-      </Modal.Trigger>
-      <Modal.Popup>
-        <Modal.Title>Modal Dispensável</Modal.Title>
-        <Modal.Body>
-          <Modal.Description>
-            Você pode fechar este modal simplesmente clicando no fundo escuro fora dele!
-          </Modal.Description>
-        </Modal.Body>
-        <Modal.Buttons>
-          <Modal.ButtonClose style={{ width: "100%" }}>Entendido</Modal.ButtonClose>
-        </Modal.Buttons>
-      </Modal.Popup>
-    </Modal.Root>
-  ),
-};
-
-export const ScrollingContent = {
-  render: () => (
-    <Modal.Root>
-      <Modal.Trigger
-        style={{
-          padding: "8px 16px",
-          cursor: "pointer",
-          borderRadius: "4px",
-          backgroundColor: "#8b5cf6",
-          color: "white",
-          border: "none",
-        }}
-      >
-        Abrir Modal Longo
-      </Modal.Trigger>
-      <Modal.Popup>
-        <Modal.Title>Termos e Condições</Modal.Title>
-        <Modal.Body>
-          {Array.from({ length: 15 }).map((_, i) => (
-            <p key={i} style={{ marginBottom: "1rem" }}>
-              Bacon ipsum dolor amet short ribs turducken pancetta bresaola picanha, jowl pastrami
-              fatback porchetta biltong buffalo kevin. Corned beef spare ribs jowl leberkas
-              prosciutto sirloin pastrami ribeye alcatra.
-            </p>
-          ))}
-        </Modal.Body>
-        <Modal.Buttons>
-          <Modal.ButtonClose>Recusar</Modal.ButtonClose>
-          <Modal.ButtonAction>Aceitar</Modal.ButtonAction>
-        </Modal.Buttons>
-      </Modal.Popup>
-    </Modal.Root>
-  ),
-};
-
-export const HideCloseIcon = {
-  render: () => (
-    <Modal.Root>
-      <Modal.Trigger
-        style={{
-          padding: "8px 16px",
-          cursor: "pointer",
-          borderRadius: "4px",
-          backgroundColor: "#f59e0b",
-          color: "white",
-          border: "none",
-        }}
-      >
-        Abrir Modal (Sem X)
-      </Modal.Trigger>
-      <Modal.Popup hideCloseIcon>
-        <Modal.Title>Alerta</Modal.Title>
-        <Modal.Description>
-          Este modal não tem o botão de fechar (X) padrão no canto superior direito e bloqueia a
-          tecla Esc.
-        </Modal.Description>
-        <Modal.Buttons>
-          <Modal.ButtonClose>Entendido</Modal.ButtonClose>
-        </Modal.Buttons>
-      </Modal.Popup>
-    </Modal.Root>
-  ),
-};
-
-const StoreModalExample = () => {
-  const modal = useModal<{ name: string }>("story-modal");
-
-  return (
-    <div>
-      <button
-        onClick={() => modal.open({ name: "Usuário Zustand" })}
-        style={{
-          padding: "8px 16px",
-          cursor: "pointer",
-          borderRadius: "4px",
-          backgroundColor: "#10b981",
-          color: "white",
-          border: "none",
-        }}
-      >
-        Abrir Modal com Store
-      </button>
-
-      <Modal.Root open={modal.isOpen} onOpenChange={(open) => !open && modal.close()}>
-        <Modal.Popup>
-          <Modal.Title>Modal Controlado</Modal.Title>
-          <Modal.Description>
-            Olá, {modal.data?.name || "Visitante"}! O estado deste modal é gerenciado pelo Zustand.
-          </Modal.Description>
-          <Modal.Buttons>
-            <Modal.ButtonClose>Fechar</Modal.ButtonClose>
-          </Modal.Buttons>
-        </Modal.Popup>
-      </Modal.Root>
-    </div>
-  );
-};
-
-export const WithZustandStore = {
-  render: () => <StoreModalExample />,
 };

@@ -1,3 +1,4 @@
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
@@ -21,9 +22,14 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
@@ -32,6 +38,54 @@ const meta = {
     placeholder: "000.000.000-00",
     mask: "CPF",
     onChange: fn(),
+  },
+  argTypes: {
+    label: {
+      description: "Texto do rótulo exibido acima do campo.",
+      table: { type: { summary: "string" } },
+    },
+    mask: {
+      description: "Máscara aplicada ao input (ex: CPF, CNPJ, TELEFONE).",
+      table: { type: { summary: "MaskType" } },
+    },
+    errorMessage: {
+      description: "Mensagem de erro exibida abaixo do campo.",
+      table: { type: { summary: "string" } },
+    },
+    description: {
+      description: "Texto descritivo auxiliar exibido abaixo do campo.",
+      table: { type: { summary: "string" } },
+    },
+    showRequiredText: {
+      description: "Exibe o texto de obrigatório visualmente.",
+      table: { type: { summary: "boolean" } },
+    },
+    icon: {
+      description: "Ícone renderizado à esquerda do input.",
+      table: { type: { summary: "React.ReactNode" } },
+      control: false,
+    },
+    rightIcon: {
+      description: "Ícone renderizado à direita do input.",
+      table: { type: { summary: "React.ReactNode" } },
+      control: false,
+    },
+    placeholder: {
+      description: "Texto placeholder do input (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "string" } },
+    },
+    required: {
+      description: "Indica que o campo é obrigatório (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
+    readOnly: {
+      description: "Modo somente leitura (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
+    disabled: {
+      description: "Desabilita o campo (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
   },
 } satisfies Meta<typeof Input>;
 
@@ -48,44 +102,6 @@ export const Default: Story = {
         </div>
       </div>
       <DownloadZipButton files={zipFiles} zipName="input" />
-    </div>
-  ),
-};
-
-export const WithoutMask: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Nome",
-    placeholder: "Digite seu nome...",
-    mask: undefined,
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <Input {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const WithError: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "E-mail",
-    placeholder: "Digite seu e-mail...",
-    mask: undefined,
-    errorMessage: "E-mail inválido",
-    defaultValue: "usuario@errado",
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <Input {...args} />
-        </div>
-      </div>
     </div>
   ),
 };

@@ -1,3 +1,4 @@
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
@@ -21,14 +22,68 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
   args: {
     onChange: fn(),
+    label: "Documento de Identidade",
+    description: "Faça upload de um arquivo PDF ou imagem (máx 5MB)",
+  },
+  argTypes: {
+    label: {
+      description: "Texto do rótulo exibido acima da área de upload.",
+      table: { type: { summary: "string" } },
+    },
+    errorMessage: {
+      description: "Mensagem de erro exibida abaixo da área de upload.",
+      table: { type: { summary: "string" } },
+    },
+    description: {
+      description: "Texto descritivo auxiliar exibido abaixo da área de upload.",
+      table: { type: { summary: "string" } },
+    },
+    showRequiredText: {
+      description: "Exibe o texto de obrigatório visualmente.",
+      table: { type: { summary: "boolean" } },
+    },
+    showDropZone: {
+      description: "Se false, remove a zona de drag-and-drop e renderiza um botão simples.",
+      table: { type: { summary: "boolean" } },
+      defaultValue: { summary: "true" },
+    },
+    maxFiles: {
+      description: "Limita a quantidade máxima de arquivos no modo `multiple`.",
+      table: { type: { summary: "number" } },
+    },
+    readOnly: {
+      description: "Modo somente leitura (impede alterações).",
+      table: { type: { summary: "boolean" } },
+    },
+    multiple: {
+      description: "Permite selecionar múltiplos arquivos (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
+    accept: {
+      description: "Tipos de arquivo aceitos (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "string" } },
+    },
+    required: {
+      description: "Indica que o campo é obrigatório (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
+    disabled: {
+      description: "Desabilita o campo (herdado de `InputHTMLAttributes`).",
+      table: { type: { summary: "boolean" } },
+    },
   },
 } satisfies Meta<typeof InputFile>;
 
@@ -37,10 +92,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   parameters: { layout: "padded" },
-  args: {
-    label: "Documento de Identidade",
-    description: "Faça upload de um arquivo PDF ou imagem (máx 5MB)",
-  },
   render: (args) => (
     <div>
       <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
@@ -49,95 +100,6 @@ export const Default: Story = {
         </div>
       </div>
       <DownloadZipButton files={zipFiles} zipName="input-file" />
-    </div>
-  ),
-};
-
-export const Required: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Currículo",
-    required: true,
-    showRequiredText: true,
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <InputFile {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const ErrorState: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Comprovante de Residência",
-    errorMessage: "Arquivo inválido ou muito grande.",
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <InputFile {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const Disabled: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Contrato",
-    disabled: true,
-    description: "Você não tem permissão para alterar este arquivo.",
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <InputFile {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const Multiple: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Fotos Adicionais",
-    multiple: true,
-    description: "Selecione vários arquivos de uma vez.",
-    accept: "image/*",
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <InputFile {...args} />
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const ReadOnly: Story = {
-  parameters: { layout: "padded" },
-  args: {
-    label: "Arquivos Enviados",
-    readOnly: true,
-  },
-  render: (args) => (
-    <div>
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "280px" }}>
-          <InputFile {...args} />
-        </div>
-      </div>
     </div>
   ),
 };

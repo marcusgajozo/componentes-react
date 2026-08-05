@@ -1,3 +1,4 @@
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ColumnDef } from "@tanstack/react-table";
 import { fn } from "storybook/test";
@@ -32,12 +33,49 @@ const meta: Meta<DataTableProps<Viagem>> = {
   parameters: {
     layout: "padded",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
+  argTypes: {
+    columns: {
+      description: "Definição das colunas da tabela (TanStack Table).",
+      table: { type: { summary: "ColumnDef<TData, TValue>[]" } },
+    },
+    data: {
+      description: "Array de dados a serem exibidos na tabela.",
+      table: { type: { summary: "TData[]" } },
+    },
+    totalItems: {
+      description: "Total de itens para a paginação (geralmente do servidor).",
+      table: { type: { summary: "number" } },
+    },
+    onSelectRow: {
+      description:
+        "Callback disparado quando linhas são selecionadas. Habilita a coluna de seleção.",
+      table: { type: { summary: "(rows: TData[]) => void" } },
+    },
+    actionColumn: {
+      description: "Lista de ações exibidas na coluna de ações de cada linha.",
+      table: { type: { summary: "DataTableAction<TData>[]" } },
+    },
+    optionsPerPage: {
+      description: "Opções de itens por página exibidas no seletor da paginação.",
+      table: { type: { summary: "number[]" } },
+      defaultValue: { summary: "[10, 20, 30, 40, 50]" },
+    },
+    isLoading: {
+      description: "Exibe o skeleton de carregamento da tabela.",
+      table: { type: { summary: "boolean" } },
+    },
+  },
 };
 
 export default meta;
@@ -220,71 +258,6 @@ export const Default: Story = {
         <DataTable {...args} />
       </div>
       <DownloadZipButton files={zipFiles} zipName="data-table" />
-    </div>
-  ),
-};
-
-export const Loading: Story = {
-  args: {
-    columns,
-    data: [],
-    totalItems: 100,
-    isLoading: true,
-  },
-  render: (args) => (
-    <div style={{ padding: "32px 0" }}>
-      <DataTable {...args} />
-    </div>
-  ),
-};
-
-export const WithoutActions: Story = {
-  args: {
-    columns,
-    data,
-    totalItems: 100,
-  },
-  render: (args) => (
-    <div style={{ padding: "32px 0" }}>
-      <DataTable {...args} />
-    </div>
-  ),
-};
-
-export const WithRowSelection: Story = {
-  args: {
-    columns,
-    data,
-    totalItems: 100,
-    onSelectRow: fn(),
-  },
-  render: (args) => (
-    <div style={{ padding: "32px 0" }}>
-      <DataTable {...args} />
-    </div>
-  ),
-};
-
-export const CompoundComponents: Story = {
-  args: {
-    columns,
-    data,
-    totalItems: 100,
-  },
-  render: (args) => (
-    <div style={{ padding: "32px 0" }}>
-      <DataTable.Root isLoading={false}>
-        <DataTable.ContentTable
-          data={args.data}
-          columns={args.columns}
-          onSelectRow={args.onSelectRow}
-          actionColumn={args.actionColumn}
-        >
-          <DataTable.Header />
-          <DataTable.Body />
-        </DataTable.ContentTable>
-        <DataTable.Pagination totalItems={args.totalItems ?? 100} />
-      </DataTable.Root>
     </div>
   ),
 };

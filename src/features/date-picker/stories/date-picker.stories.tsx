@@ -1,4 +1,4 @@
-import type { DateRange } from "@daypicker/react";
+import { Controls, Markdown, Primary, Title } from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
@@ -22,14 +22,71 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      description: {
-        component: readme,
-      },
+      page: () => (
+        <>
+          <Title />
+          <Primary />
+          <Controls />
+          <Markdown>{readme}</Markdown>
+        </>
+      ),
     },
   },
   tags: ["autodocs"],
   args: {
     label: "Data de Nascimento",
+  },
+  argTypes: {
+    mode: {
+      description: "Modo de seleção: data única ou intervalo.",
+      table: { type: { summary: '"single" | "range"' } },
+      defaultValue: { summary: '"single"' },
+    },
+    showTime: {
+      description: "Exibe o seletor de horário.",
+      table: { type: { summary: "boolean" } },
+    },
+    value: {
+      description: "Valor controlado (Date ou DateRange).",
+      table: { type: { summary: "Date | DateRange" } },
+    },
+    onChange: {
+      description: "Callback disparado quando a data muda.",
+      table: { type: { summary: "(value: Date | DateRange | undefined) => void" } },
+    },
+    label: {
+      description: "Texto do rótulo exibido acima do campo.",
+      table: { type: { summary: "string" } },
+    },
+    errorMessage: {
+      description: "Mensagem de erro exibida abaixo do campo.",
+      table: { type: { summary: "string" } },
+    },
+    description: {
+      description: "Texto descritivo auxiliar.",
+      table: { type: { summary: "string" } },
+    },
+    placeholder: {
+      description: "Texto placeholder do input.",
+      table: { type: { summary: "string" } },
+      defaultValue: { summary: '"Selecione uma data..."' },
+    },
+    readOnly: {
+      description: "Modo somente leitura (impede alterações).",
+      table: { type: { summary: "boolean" } },
+    },
+    required: {
+      description: "Indica que o campo é obrigatório.",
+      table: { type: { summary: "boolean" } },
+    },
+    showRequiredText: {
+      description: "Exibe o texto de obrigatório visualmente.",
+      table: { type: { summary: "boolean" } },
+    },
+    disabled: {
+      description: "Desabilita o campo.",
+      table: { type: { summary: "boolean" } },
+    },
   },
 } satisfies Meta<typeof DatePicker>;
 
@@ -50,65 +107,4 @@ export const Default: Story = {
       </div>
     );
   },
-};
-
-export const Range: Story = {
-  args: {
-    label: "Período da Viagem",
-    mode: "range",
-  },
-  render: (args) => {
-    const [range, setRange] = useState<DateRange>();
-    return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "320px" }}>
-          <DatePicker {...args} value={range} onChange={(val) => setRange(val as DateRange)} />
-        </div>
-      </div>
-    );
-  },
-};
-
-export const WithTime: Story = {
-  args: {
-    label: "Agendamento",
-    showTime: true,
-  },
-  render: (args) => {
-    const [date, setDate] = useState<Date>();
-    return (
-      <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-        <div style={{ width: "320px" }}>
-          <DatePicker {...args} value={date} onChange={(val) => setDate(val as Date)} />
-        </div>
-      </div>
-    );
-  },
-};
-
-export const WithError: Story = {
-  args: {
-    errorMessage: "A data informada é inválida.",
-  },
-  render: (args) => (
-    <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-      <div style={{ width: "320px" }}>
-        <DatePicker {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const ReadOnly: Story = {
-  args: {
-    readOnly: true,
-    value: new Date(2026, 6, 31),
-  },
-  render: (args) => (
-    <div style={{ display: "flex", justifyContent: "center", padding: "32px 0" }}>
-      <div style={{ width: "320px" }}>
-        <DatePicker {...args} />
-      </div>
-    </div>
-  ),
 };
