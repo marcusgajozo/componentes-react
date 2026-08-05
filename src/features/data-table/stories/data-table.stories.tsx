@@ -1,8 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ColumnDef } from "@tanstack/react-table";
+import { fn } from "storybook/test";
 
+import { DownloadZipButton } from "../../../storybook/download-zip";
 import { DataTable, type DataTableProps } from "../ui";
 import readme from "../ui/README.md?raw";
+
+const uiFiles = import.meta.glob("../ui/**/*", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+}) as Record<string, string>;
+const zipFiles = Object.entries(uiFiles).map(([path, content]) => ({
+  name: path.split("/ui/")[1] || path,
+  content,
+}));
+
+type Viagem = {
+  id: string;
+  sentido: string;
+  partida: string;
+  chegada: string;
+  placa: string;
+  prefixo: string;
+  assentos: number;
+};
 
 const meta: Meta<DataTableProps<Viagem>> = {
   title: "Components/DataTable",
@@ -15,29 +37,20 @@ const meta: Meta<DataTableProps<Viagem>> = {
       },
     },
   },
+  tags: ["autodocs"],
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type Viagem = {
-  id: string;
-  sentido: string;
-  partida: string;
-  chegada: string;
-  placa: string;
-  prefixo: string;
-  assentos: number;
-};
-
 const data: Viagem[] = [
   {
     id: "1",
     sentido: "Ida",
-    partida: "06h00000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    partida: "06h00",
     chegada: "15h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "ABC1D23",
+    prefixo: "001",
     assentos: 48,
   },
   {
@@ -45,8 +58,8 @@ const data: Viagem[] = [
     sentido: "Volta",
     partida: "06h00",
     chegada: "15h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "DEF2G34",
+    prefixo: "002",
     assentos: 48,
   },
   {
@@ -54,8 +67,8 @@ const data: Viagem[] = [
     sentido: "Ida",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "GHI3H45",
+    prefixo: "003",
     assentos: 48,
   },
   {
@@ -63,8 +76,8 @@ const data: Viagem[] = [
     sentido: "Volta",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "JKL4I56",
+    prefixo: "004",
     assentos: 48,
   },
   {
@@ -72,8 +85,8 @@ const data: Viagem[] = [
     sentido: "Ida",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "MNO5J67",
+    prefixo: "005",
     assentos: 48,
   },
   {
@@ -81,8 +94,8 @@ const data: Viagem[] = [
     sentido: "Volta",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "PQR6K78",
+    prefixo: "006",
     assentos: 48,
   },
   {
@@ -90,8 +103,8 @@ const data: Viagem[] = [
     sentido: "Ida",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "STU7L89",
+    prefixo: "007",
     assentos: 48,
   },
   {
@@ -99,8 +112,8 @@ const data: Viagem[] = [
     sentido: "Volta",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "VWX8M90",
+    prefixo: "008",
     assentos: 48,
   },
   {
@@ -108,8 +121,8 @@ const data: Viagem[] = [
     sentido: "Ida",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "YZA9N01",
+    prefixo: "009",
     assentos: 48,
   },
   {
@@ -117,8 +130,8 @@ const data: Viagem[] = [
     sentido: "Volta",
     partida: "21h00",
     chegada: "06h41",
-    placa: "-",
-    prefixo: "-",
+    placa: "BCD0O12",
+    prefixo: "010",
     assentos: 48,
   },
 ];
@@ -155,7 +168,7 @@ export const Default: Story = {
     columns,
     data,
     totalItems: 100,
-    onSelectRow: () => {},
+    onSelectRow: fn(),
     actionColumn: [
       {
         title: "Editar",
@@ -178,7 +191,7 @@ export const Default: Story = {
         onAction: (row) => window.alert(`Editar item: ${row.id}`),
       },
       {
-        title: "Excluir dasdasdasdasd",
+        title: "Excluir",
         icon: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -201,4 +214,77 @@ export const Default: Story = {
       },
     ],
   },
+  render: (args) => (
+    <div>
+      <div style={{ padding: "32px 0" }}>
+        <DataTable {...args} />
+      </div>
+      <DownloadZipButton files={zipFiles} zipName="data-table" />
+    </div>
+  ),
+};
+
+export const Loading: Story = {
+  args: {
+    columns,
+    data: [],
+    totalItems: 100,
+    isLoading: true,
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0" }}>
+      <DataTable {...args} />
+    </div>
+  ),
+};
+
+export const WithoutActions: Story = {
+  args: {
+    columns,
+    data,
+    totalItems: 100,
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0" }}>
+      <DataTable {...args} />
+    </div>
+  ),
+};
+
+export const WithRowSelection: Story = {
+  args: {
+    columns,
+    data,
+    totalItems: 100,
+    onSelectRow: fn(),
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0" }}>
+      <DataTable {...args} />
+    </div>
+  ),
+};
+
+export const CompoundComponents: Story = {
+  args: {
+    columns,
+    data,
+    totalItems: 100,
+  },
+  render: (args) => (
+    <div style={{ padding: "32px 0" }}>
+      <DataTable.Root isLoading={false}>
+        <DataTable.ContentTable
+          data={args.data}
+          columns={args.columns}
+          onSelectRow={args.onSelectRow}
+          actionColumn={args.actionColumn}
+        >
+          <DataTable.Header />
+          <DataTable.Body />
+        </DataTable.ContentTable>
+        <DataTable.Pagination totalItems={args.totalItems ?? 100} />
+      </DataTable.Root>
+    </div>
+  ),
 };
