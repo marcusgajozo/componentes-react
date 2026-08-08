@@ -1,3 +1,5 @@
+export * from "./components/async-select/async-select";
+export * from "./components/form-async-select/form-async-select";
 export * from "./components/form-select/form-select";
 export type { Option, SelectProps } from "./components/select";
 export { Select } from "./components/select";

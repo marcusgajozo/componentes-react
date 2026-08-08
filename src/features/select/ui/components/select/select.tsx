@@ -19,6 +19,8 @@ export interface SelectProps {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  onSearchChange?: (value: string) => void;
+  isLoading?: boolean;
   placeholder?: string;
   disabled?: boolean;
   id?: string;
@@ -38,6 +40,8 @@ export function Select({
   value,
   defaultValue,
   onChange,
+  onSearchChange,
+  isLoading = false,
   placeholder = "Select...",
   disabled = false,
   id,
@@ -72,6 +76,14 @@ export function Select({
     [isControlled, onChange]
   );
 
+  const handleInputValueChange = React.useCallback(
+    (value: string) => {
+      setInputValue(value);
+      onSearchChange?.(value);
+    },
+    [onSearchChange]
+  );
+
   const filteredOptions = React.useMemo(() => {
     if (selectedObj && inputValue === selectedObj.label) {
       return options;
@@ -102,7 +114,7 @@ export function Select({
           value={selectedObj}
           onValueChange={handleValueChange}
           inputValue={inputValue}
-          onInputValueChange={setInputValue}
+          onInputValueChange={handleInputValueChange}
           disabled={disabled}
           open={open}
           onOpenChange={setOpen}
@@ -117,7 +129,11 @@ export function Select({
             required={required}
           />
           {!disabled && (
-            <SelectDropdown options={filteredOptions} noOptionsMessage={noOptionsMessage} />
+            <SelectDropdown
+              options={filteredOptions}
+              noOptionsMessage={noOptionsMessage}
+              isLoading={isLoading}
+            />
           )}
         </Combobox.Root>
       )}
