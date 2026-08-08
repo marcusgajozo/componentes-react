@@ -1,17 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { MultiSelect, type MultiSelectProps } from "../multi-select/multi-select";
 
-export interface FormMultiSelectProps extends Omit<
+export type FormMultiSelectProps<TFieldValues extends FieldValues> = Omit<
   MultiSelectProps,
   "value" | "onChange" | "name"
-> {
-  name: string;
-}
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormMultiSelect({ name, ...props }: FormMultiSelectProps) {
-  const { control } = useFormContext();
-
+export function FormMultiSelect<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormMultiSelectProps<TFieldValues>) {
   return (
     <Controller
       name={name}

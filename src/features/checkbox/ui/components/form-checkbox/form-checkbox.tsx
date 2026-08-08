@@ -1,14 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { Checkbox, type CheckboxProps } from "../checkbox/checkbox";
 
-export interface FormCheckboxProps extends Omit<CheckboxProps, "value" | "onChange" | "name"> {
-  name: string;
-}
+export type FormCheckboxProps<TFieldValues extends FieldValues> = Omit<
+  CheckboxProps,
+  "value" | "onChange" | "name"
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormCheckbox({ name, ...props }: FormCheckboxProps) {
-  const { control } = useFormContext();
-
+export function FormCheckbox<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormCheckboxProps<TFieldValues>) {
   return (
     <Controller
       name={name}

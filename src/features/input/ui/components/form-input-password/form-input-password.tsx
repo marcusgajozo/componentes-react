@@ -1,17 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { InputPassword, type InputPasswordProps } from "../input-password/input-password";
 
-export interface FormInputPasswordProps extends Omit<
+export type FormInputPasswordProps<TFieldValues extends FieldValues> = Omit<
   InputPasswordProps,
   "value" | "onChange" | "onBlur" | "name"
-> {
-  name: string;
-}
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormInputPassword({ name, ...props }: FormInputPasswordProps) {
-  const { control } = useFormContext();
-
+export function FormInputPassword<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormInputPasswordProps<TFieldValues>) {
   return (
     <Controller
       name={name}

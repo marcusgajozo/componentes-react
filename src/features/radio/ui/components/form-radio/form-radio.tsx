@@ -1,14 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { Radio, type RadioProps } from "../radio/radio";
 
-export interface FormRadioProps extends Omit<RadioProps, "value" | "onChange" | "name"> {
-  name: string;
-}
+export type FormRadioProps<TFieldValues extends FieldValues> = Omit<
+  RadioProps,
+  "value" | "onChange" | "name"
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormRadio({ name, ...props }: FormRadioProps) {
-  const { control } = useFormContext();
-
+export function FormRadio<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormRadioProps<TFieldValues>) {
   return (
     <Controller
       name={name}

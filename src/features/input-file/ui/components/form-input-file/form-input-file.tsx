@@ -1,17 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { InputFile, type InputFileProps } from "../input-file";
 
-export interface FormInputFileProps extends Omit<
+export type FormInputFileProps<TFieldValues extends FieldValues> = Omit<
   InputFileProps,
   "value" | "onChange" | "onBlur" | "name"
-> {
-  name: string;
-}
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormInputFile({ name, ...props }: FormInputFileProps) {
-  const { control } = useFormContext();
-
+export function FormInputFile<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormInputFileProps<TFieldValues>) {
   return (
     <Controller
       name={name}

@@ -1,17 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { InputNumeric, type InputNumericProps } from "../input-numeric/input-numeric";
 
-export interface FormInputNumericProps extends Omit<
+export type FormInputNumericProps<TFieldValues extends FieldValues> = Omit<
   InputNumericProps,
   "value" | "onChange" | "onBlur" | "name"
-> {
-  name: string;
-}
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormInputNumeric({ name, ...props }: FormInputNumericProps) {
-  const { control } = useFormContext();
-
+export function FormInputNumeric<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormInputNumericProps<TFieldValues>) {
   return (
     <Controller
       name={name}

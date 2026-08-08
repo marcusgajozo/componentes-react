@@ -1,14 +1,20 @@
-import { Controller, useFormContext } from "react-hook-form";
+import { type Control, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import { Input, type InputProps } from "../input/input";
 
-export interface FormInputProps extends Omit<InputProps, "value" | "onChange" | "onBlur" | "name"> {
-  name: string;
-}
+export type FormInputProps<TFieldValues extends FieldValues> = Omit<
+  InputProps,
+  "value" | "onChange" | "onBlur" | "name"
+> & {
+  name: FieldPath<TFieldValues>;
+  control: Control<TFieldValues>;
+};
 
-export function FormInput({ name, ...props }: FormInputProps) {
-  const { control } = useFormContext();
-
+export function FormInput<TFieldValues extends FieldValues>({
+  name,
+  control,
+  ...props
+}: FormInputProps<TFieldValues>) {
   return (
     <Controller
       name={name}
