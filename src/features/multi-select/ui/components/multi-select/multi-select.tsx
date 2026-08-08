@@ -19,6 +19,8 @@ export interface MultiSelectProps {
   value?: string[];
   defaultValue?: string[];
   onChange?: (value: string[]) => void;
+  onSearchChange?: (value: string) => void;
+  isLoading?: boolean;
   placeholder?: string;
   disabled?: boolean;
   id?: string;
@@ -39,6 +41,8 @@ export function MultiSelect({
   value,
   defaultValue,
   onChange,
+  onSearchChange,
+  isLoading = false,
   placeholder = "Select...",
   disabled = false,
   id,
@@ -64,6 +68,14 @@ export function MultiSelect({
 
   const [inputValue, setInputValue] = React.useState("");
   const [open, setOpen] = React.useState(false);
+
+  const handleInputValueChange = React.useCallback(
+    (val: string) => {
+      setInputValue(val);
+      if (onSearchChange) onSearchChange(val);
+    },
+    [onSearchChange]
+  );
 
   const selectableOptions = React.useMemo(() => options.filter((o) => !o.disabled), [options]);
 
@@ -155,7 +167,7 @@ export function MultiSelect({
           value={selectedObjs}
           onValueChange={handleValueChange}
           inputValue={inputValue}
-          onInputValueChange={setInputValue}
+          onInputValueChange={handleInputValueChange}
           disabled={disabled}
         >
           <MultiSelectTrigger
@@ -174,6 +186,7 @@ export function MultiSelect({
             <MultiSelectDropdown
               options={filteredOptions}
               noOptionsMessage={noOptionsMessage}
+              isLoading={isLoading}
               maxSelected={maxSelected}
               currentSelectedCount={selectedObjs.length}
               isAllSelected={

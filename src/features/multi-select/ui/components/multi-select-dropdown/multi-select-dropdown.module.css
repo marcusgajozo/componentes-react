@@ -95,6 +95,38 @@
   white-space: nowrap;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--ms-option-padding);
+  color: var(--ms-option-disabled-color);
+  list-style: none;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.spinnerTrack {
+  opacity: 0.25;
+}
+
+.spinnerHead {
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .noOptions {
   padding: var(--ms-option-padding);
   color: var(--ms-placeholder-color);

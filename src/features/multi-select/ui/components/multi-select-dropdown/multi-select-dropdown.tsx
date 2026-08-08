@@ -6,6 +6,7 @@ import styles from "./multi-select-dropdown.module.css";
 interface DropdownProps {
   options: Option[];
   noOptionsMessage: string;
+  isLoading?: boolean;
   maxSelected?: number;
   currentSelectedCount: number;
   isAllSelected: boolean;
@@ -15,6 +16,7 @@ interface DropdownProps {
 export function MultiSelectDropdown({
   options,
   noOptionsMessage,
+  isLoading = false,
   maxSelected,
   currentSelectedCount,
   isAllSelected,
@@ -27,49 +29,58 @@ export function MultiSelectDropdown({
       <Combobox.Positioner sideOffset={4} className={styles.positioner}>
         <Combobox.Popup className={styles.dropdown}>
           <Combobox.List className={styles.listbox}>
-            {options.length > 0 && (
-              <Combobox.Item
-                value={{
-                  value: "ALL_SELECT_TOGGLE",
-                  label: isAllSelected ? "Desmarcar todos" : "Selecionar todos",
-                }}
-                className={`${styles.option} ${styles.selectAllOption}`}
-              >
-                <div
-                  className={styles.checkbox}
-                  data-state={
-                    isAllSelected ? "checked" : isIndeterminate ? "indeterminate" : "unchecked"
-                  }
-                >
-                  {isAllSelected && <CheckIcon />}
-                  {isIndeterminate && <IndeterminateIcon />}
-                </div>
-                <span className={styles.optionLabel}>
-                  {isAllSelected ? "Desmarcar todos" : "Selecionar todos"}
-                </span>
-              </Combobox.Item>
-            )}
-            {options.length === 0 ? (
-              <div className={styles.noOptions}>{noOptionsMessage}</div>
+            {isLoading ? (
+              <div className={styles.loading}>
+                <Spinner />
+                <span>Carregando...</span>
+              </div>
             ) : (
-              options.map((opt) => {
-                return (
+              <>
+                {options.length > 0 && (
                   <Combobox.Item
-                    key={opt.value}
-                    value={opt}
-                    disabled={opt.disabled || (isAtMax && true)}
-                    className={styles.option}
+                    value={{
+                      value: "ALL_SELECT_TOGGLE",
+                      label: isAllSelected ? "Desmarcar todos" : "Selecionar todos",
+                    }}
+                    className={`${styles.option} ${styles.selectAllOption}`}
                   >
-                    <Combobox.ItemIndicator className={styles.checkbox}>
-                      <CheckIcon />
-                    </Combobox.ItemIndicator>
-                    <div className={`${styles.checkbox} ${styles.checkboxUnselected}`} />
-                    <span className={styles.optionLabel} title={opt.label}>
-                      {opt.label}
+                    <div
+                      className={styles.checkbox}
+                      data-state={
+                        isAllSelected ? "checked" : isIndeterminate ? "indeterminate" : "unchecked"
+                      }
+                    >
+                      {isAllSelected && <CheckIcon />}
+                      {isIndeterminate && <IndeterminateIcon />}
+                    </div>
+                    <span className={styles.optionLabel}>
+                      {isAllSelected ? "Desmarcar todos" : "Selecionar todos"}
                     </span>
                   </Combobox.Item>
-                );
-              })
+                )}
+                {options.length === 0 ? (
+                  <div className={styles.noOptions}>{noOptionsMessage}</div>
+                ) : (
+                  options.map((opt) => {
+                    return (
+                      <Combobox.Item
+                        key={opt.value}
+                        value={opt}
+                        disabled={opt.disabled || (isAtMax && true)}
+                        className={styles.option}
+                      >
+                        <Combobox.ItemIndicator className={styles.checkbox}>
+                          <CheckIcon />
+                        </Combobox.ItemIndicator>
+                        <div className={`${styles.checkbox} ${styles.checkboxUnselected}`} />
+                        <span className={styles.optionLabel} title={opt.label}>
+                          {opt.label}
+                        </span>
+                      </Combobox.Item>
+                    );
+                  })
+                )}
+              </>
             )}
           </Combobox.List>
         </Combobox.Popup>
@@ -99,6 +110,35 @@ function IndeterminateIcon() {
   return (
     <svg width="8" height="2" viewBox="0 0 8 2" fill="currentColor">
       <rect width="8" height="2" rx="1" />
+    </svg>
+  );
+}
+
+function Spinner() {
+  return (
+    <svg
+      className={styles.spinner}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+    >
+      <circle
+        className={styles.spinnerTrack}
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className={styles.spinnerHead}
+        d="M12 2a10 10 0 0 1 10 10"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
