@@ -1,0 +1,117 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--in-font-family);
+  width: 100%;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.label {
+  font-size: var(--in-label-size, var(--in-font-size));
+  color: var(--in-label-color);
+  font-weight: 500;
+}
+
+.required {
+  color: var(--in-required-color);
+}
+
+.description {
+  font-size: var(--in-desc-size, 0.75rem);
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputWrapper:focus-within {
+  z-index: 1;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--in-min-height);
+  padding: var(--in-padding);
+  padding-right: 2.5rem;
+  font-size: var(--in-font-size);
+  font-family: inherit;
+  color: var(--in-text-color);
+  background-color: var(--in-bg);
+  border: var(--in-border-width) solid var(--in-border-color);
+  border-radius: var(--in-border-radius);
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.input:focus {
+  border-color: var(--in-focus-ring-color);
+  box-shadow: 0 0 0 var(--in-focus-ring-width) var(--in-focus-ring-color);
+}
+
+.input:disabled {
+  background-color: var(--in-disabled-bg);
+  opacity: var(--in-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.input::placeholder {
+  color: var(--in-placeholder-color);
+}
+
+.inputError {
+  border-color: var(--in-error-color);
+  box-shadow: 0 0 0 var(--in-focus-ring-width) var(--in-error-color);
+}
+
+.iconButton {
+  position: absolute;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--in-placeholder-color, var(--ui-gray-500, #6b7280));
+  cursor: pointer;
+  padding: 0;
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.iconButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.errorMessage {
+  font-size: var(--in-error-size, 0.75rem);
+  color: var(--in-error-color);
+  margin-top: 0.125rem;
+}
+
+.viewText {
+  color: var(--in-text-color);
+  font-size: var(--in-font-size, 0.875rem);
+  margin: 0;
+  padding: 0.5rem 0;
+  min-height: calc(2.25rem - 2px);
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}

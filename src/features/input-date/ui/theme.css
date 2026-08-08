@@ -1,0 +1,23 @@
+:root {
+  --in-primary-color: var(--ui-primary, #146946);
+  --in-text-color: var(--ui-gray-900, #111827);
+  --in-font-family: var(--ui-font, system-ui, -apple-system, sans-serif);
+  --in-font-size: 0.875rem;
+  --in-label-size: var(--in-font-size);
+  --in-desc-size: 0.85rem;
+  --in-error-size: 0.85rem;
+  --in-border-color: var(--ui-gray-300, #d1d5db);
+  --in-border-radius: 0.375rem;
+  --in-border-width: 1px;
+  --in-focus-ring-color: var(--in-primary-color);
+  --in-focus-ring-width: 2px;
+  --in-bg: #fff;
+  --in-min-height: 2.5rem;
+  --in-padding: 0.375rem 0.5rem;
+  --in-placeholder-color: var(--ui-gray-500, #6b7280);
+  --in-disabled-bg: var(--ui-gray-50, #f9fafb);
+  --in-disabled-opacity: 0.6;
+  --in-label-color: var(--ui-gray-700, #374151);
+  --in-required-color: var(--ui-gray-700, #374151);
+  --in-error-color: #ef4444;
+}
